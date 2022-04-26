@@ -6,7 +6,7 @@ function Provider({ children }) {
   const contextValue = {};
   return (
     <recipesContext.Provider value={ contextValue }>
-      { children }
+      {children}
     </recipesContext.Provider>
   );
 }
