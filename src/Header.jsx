@@ -5,7 +5,6 @@ function Header({ history, title }) {
   const [showInput, setShowInput] = useState(false);
 
   const redirectToProfile = () => {
-    console.log(history);
     history.push('/profile');
   };
 
