@@ -1,15 +1,20 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Header from '../Header';
 
-function FoodRecipes() {
+function FoodRecipes({ history }) {
   return (
     <div>
-      <Header />
+      <Header history={ history } title="Foods" />
       <h1>
         FoodRecipes
       </h1>
     </div>
   );
 }
+
+FoodRecipes.propTypes = {
+  history: PropTypes.objectOf(PropTypes.any).isRequired,
+};
 
 export default FoodRecipes;
