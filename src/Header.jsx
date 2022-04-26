@@ -1,10 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 function Header({ history, title }) {
+  const [showInput, setShowInput] = useState(false);
+
   const redirectToProfile = () => {
     console.log(history);
     history.push('/profile');
+  };
+
+  const checkSearchInput = () => {
+    if (showInput === false) {
+      setShowInput(true);
+    } else {
+      setShowInput(false);
+    }
   };
 
   return (
@@ -19,9 +29,14 @@ function Header({ history, title }) {
       <h1 data-testid="page-title">
         { title }
       </h1>
-      <button data-testid="search-top-btn" type="button">
+      <button
+        data-testid="search-top-btn"
+        type="button"
+        onClick={ () => checkSearchInput() }
+      >
         Search
       </button>
+      {showInput && <input placeholder="Search" data-testid="search-input" />}
     </header>
 
   );
