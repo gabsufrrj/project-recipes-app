@@ -5,14 +5,6 @@ import { Link } from 'react-router-dom';
 function Header({ title }) {
   const [showInput, setShowInput] = useState(false);
 
-  const checkSearchInput = () => {
-    if (showInput === false) {
-      setShowInput(true);
-    } else {
-      setShowInput(false);
-    }
-  };
-
   return (
     <header>
       <Link to="/profile">
@@ -23,14 +15,13 @@ function Header({ title }) {
           Profile
         </button>
       </Link>
-      <h1 data-testid="page-title">
-        { title }
-      </h1>
+
+      <h1 data-testid="page-title">{ title }</h1>
 
       <button
-        data-testid="search-top-btn"
         type="button"
-        onClick={ () => checkSearchInput() }
+        onClick={ () => setShowInput(!showInput) }
+        data-testid="search-top-btn"
       >
         Search
       </button>
@@ -40,14 +31,8 @@ function Header({ title }) {
   );
 }
 
-Header.defaultProps = {
-  history: undefined,
-};
-
 Header.propTypes = {
-  history: PropTypes.shape({
-    push: PropTypes.func.isRequired,
-  }),
   title: PropTypes.string.isRequired,
 };
+
 export default Header;
