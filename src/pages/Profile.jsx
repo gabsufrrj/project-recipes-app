@@ -4,7 +4,7 @@ import Header from '../Components/Header';
 function Profile() {
   return (
     <div>
-      <Header title="Profile" />
+      <Header title="Profile" renderInput={ false } />
       <h1>
         Profile
       </h1>

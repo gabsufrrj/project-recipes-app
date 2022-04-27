@@ -4,7 +4,7 @@ import Header from '../Components/Header';
 function ExploreFoodByIngredients() {
   return (
     <div>
-      <Header title="Explore Ingredients" />
+      <Header title="Explore Ingredients" renderInput={ false } />
       <h1>
         ExploreFoodByInredients
       </h1>

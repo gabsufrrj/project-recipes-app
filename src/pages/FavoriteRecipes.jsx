@@ -4,7 +4,7 @@ import Header from '../Components/Header';
 function FavoriteRecipes() {
   return (
     <div>
-      <Header title="Favorite Recipes" />
+      <Header title="Favorite Recipes" renderInput={ false } />
       <h1>
         ExploreFoodByNationality
       </h1>
