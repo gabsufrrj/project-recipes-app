@@ -1,9 +1,18 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import RadioButtons from './RadioButtons';
+import recipesContext from '../Context/MyContext';
 
 function Header({ title, renderInput }) {
+  const { searchBarValue, setSearchBarValue } = useContext(recipesContext);
   const [showInput, setShowInput] = useState(false);
+
+  const handleChange = ({ target }) => {
+    setSearchBarValue(target.value);
+  };
+
+  // console.log(searchBarValue);
 
   return (
     <header>
@@ -27,7 +36,14 @@ function Header({ title, renderInput }) {
           alt="search"
         />
       )}
-      {showInput && <input placeholder="Search" data-testid="search-input" />}
+      {showInput
+        && <input
+          onChange={ handleChange }
+          placeholder="Search"
+          data-testid="search-input"
+          value={ searchBarValue }
+        />}
+      <RadioButtons />
     </header>
   );
 }
