@@ -1,34 +1,38 @@
 import React, { useContext } from 'react';
+import PropTypes from 'prop-types';
 import recipesContext from '../Context/MyContext';
 
-function RadioButtons() {
-  const { radioInputSelected,
+function RadioButtons({ history: { location, push }, apiName }) {
+  const {
+    radioInputSelected,
     setRadioInputSelected,
-    searchBarValue } = useContext(recipesContext);
+    searchBarValue,
+  } = useContext(recipesContext);
 
   const handleChange = ({ target }) => {
     setRadioInputSelected(target.id);
-    console.log(radioInputSelected);
+  };
+
+  const checkAmountOfRecipes = (json) => {
+    const valuesJson = Object.values(json)[0];
+    if (valuesJson.length === 1) {
+      const id = (location.pathname.includes('foods') ? 'idMeal' : 'idDrink');
+      push(`${location.pathname}/${valuesJson[0][id]}`);
+    }
   };
 
   const handleClick = async () => {
-    if (radioInputSelected === 'ingredients') {
-      const request = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${searchBarValue}`);
-      console.log(request);
-      return request;
-    }
-    if (radioInputSelected === 'name') {
-      const request = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchBarValue.toLowerCase()}`);
-      console.log(request);
-      return request;
-    }
-    if (radioInputSelected === 'first-letter') {
-      if (searchBarValue.length > 1) {
-        return global.alert('Your search must have only 1 (one) character');
-      }
-      const request = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${searchBarValue.toLowerCase()}`);
-      console.log(request);
-      return request;
+    const urlRadio = {
+      ingredients: `https://www.${apiName}.com/api/json/v1/1/filter.php?i=${searchBarValue}`,
+      name: `https://www.${apiName}.com/api/json/v1/1/search.php?s=${searchBarValue}`,
+      'first-letter': `https://www.${apiName}.com/api/json/v1/1/search.php?f=${searchBarValue}`,
+    };
+    if (radioInputSelected === 'first-letter' && searchBarValue.length > 1) {
+      global.alert('Your search must have only 1 (one) character');
+    } else {
+      const request = await fetch(urlRadio[radioInputSelected]);
+      const json = await request.json();
+      checkAmountOfRecipes(json);
     }
   };
 
@@ -81,3 +85,8 @@ function RadioButtons() {
 }
 
 export default RadioButtons;
+
+RadioButtons.propTypes = {
+  apiName: PropTypes.string.isRequired,
+  history: PropTypes.objectOf(PropTypes.any.isRequired).isRequired,
+};
