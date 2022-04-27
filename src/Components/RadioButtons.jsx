@@ -19,6 +19,8 @@ function RadioButtons({ history: { location, push }, apiName }) {
       const id = (location.pathname.includes('foods') ? 'idMeal' : 'idDrink');
       push(`${location.pathname}/${valuesJson[0][id]}`);
     }
+    // const Newid = (location.pathname.includes('foods') ? 'idMeal' : 'idDrink');
+    // console.log(valuesJson[0][Newid]);
   };
 
   const handleClick = async () => {
