@@ -36,20 +36,23 @@ function App() {
           <Route exact path="/explore/foods" component={ ExploreFood } />
           <Route exact path="/explore/drinks" component={ ExploreDrink } />
           <Route
+            exact
             path="/explore/foods/ingredients"
             component={ ExploreFoodByIngredients }
           />
           <Route
+            exact
             path="/explore/drinks/ingredients"
             component={ ExploreDrinkByIngredients }
           />
           <Route
+            exact
             path="/explore/foods/nationalities"
             component={ ExploreFoodNationalities }
           />
-          <Route path="/profile" component={ Profile } />
-          <Route path="/done-recipes" component={ DoneRecipes } />
-          <Route path="/favorite-recipes" component={ FavoriteRecipes } />
+          <Route exact path="/profile" component={ Profile } />
+          <Route exact path="/done-recipes" component={ DoneRecipes } />
+          <Route exact path="/favorite-recipes" component={ FavoriteRecipes } />
         </Switch>
       </BrowserRouter>
     </Provider>
