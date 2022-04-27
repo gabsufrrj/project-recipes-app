@@ -1,13 +1,15 @@
 import React from 'react';
 import Header from '../Components/Header';
 
-function ExploreFoodByInredients() {
-  <div>
-    <Header />
-    <h1>
-      ExploreFoodByInredients
-    </h1>
-  </div>;
+function ExploreFoodByIngredients() {
+  return (
+    <div>
+      <Header title="Explore Ingredients" />
+      <h1>
+        ExploreFoodByInredients
+      </h1>
+    </div>
+  );
 }
 
-export default ExploreFoodByInredients;
+export default ExploreFoodByIngredients;

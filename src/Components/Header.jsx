@@ -27,7 +27,6 @@ function Header({ title }) {
       </button>
       {showInput && <input placeholder="Search" data-testid="search-input" />}
     </header>
-
   );
 }
 
