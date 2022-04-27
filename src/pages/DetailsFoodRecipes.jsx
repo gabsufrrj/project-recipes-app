@@ -1,11 +1,13 @@
 import React from 'react';
 
-function DetailsFoodRecipe() {
-  <div>
-    <h1>
-      DetailsFoodkRecipe
-    </h1>
-  </div>;
+function DetailsFoodRecipes() {
+  return (
+    <div>
+      <h1>
+        DetailsFoodRecipe
+      </h1>
+    </div>
+  );
 }
 
-export default DetailsFoodRecipe;
+export default DetailsFoodRecipes;

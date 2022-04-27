@@ -1,15 +1,15 @@
 import React from 'react';
 import Header from '../Components/Header';
 
-function Profile() {
+function DoneRecipes() {
   return (
     <div>
-      <Header title="Profile" renderInput={ false } />
+      <Header title="Done Recipes" renderInput={ false } />
       <h1>
-        Profile
+        Done Recipes
       </h1>
     </div>
   );
 }
 
-export default Profile;
+export default DoneRecipes;
