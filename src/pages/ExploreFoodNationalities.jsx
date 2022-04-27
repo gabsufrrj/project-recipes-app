@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from '../Components/Header';
+import Footer from '../Components/Footer';
 
 function ExploreFoodNationalities() {
   return (
@@ -8,6 +9,7 @@ function ExploreFoodNationalities() {
       <h1>
         ExploreFoodByNationality
       </h1>
+      <Footer />
     </div>
   );
 }

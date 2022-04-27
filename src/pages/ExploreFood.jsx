@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from '../Components/Header';
+import Footer from '../Components/Footer';
 
 function ExploreFood() {
   return (
@@ -8,6 +9,7 @@ function ExploreFood() {
       <h1>
         ExploreFood
       </h1>
+      <Footer />
     </div>
   );
 }
