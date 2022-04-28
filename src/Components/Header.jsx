@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import RadioButtons from './RadioButtons';
 import recipesContext from '../Context/MyContext';
 
-function Header({ title, renderInput }) {
+function Header({ title, renderInput, apiName, history }) {
   const { searchBarValue, setSearchBarValue } = useContext(recipesContext);
   const [showInput, setShowInput] = useState(false);
 
@@ -43,7 +43,7 @@ function Header({ title, renderInput }) {
           data-testid="search-input"
           value={ searchBarValue }
         />}
-      <RadioButtons />
+      <RadioButtons apiName={ apiName } history={ history } />
     </header>
   );
 }
@@ -51,6 +51,8 @@ function Header({ title, renderInput }) {
 Header.propTypes = {
   title: PropTypes.string.isRequired,
   renderInput: PropTypes.bool.isRequired,
+  apiName: PropTypes.string.isRequired,
+  history: PropTypes.objectOf(PropTypes.any.isRequired).isRequired,
 };
 
 export default Header;

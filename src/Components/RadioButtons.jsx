@@ -14,7 +14,8 @@ function RadioButtons() {
   const handleClick = async () => {
     if (radioInputSelected === 'ingredients') {
       const request = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${searchBarValue}`);
-      console.log(request);
+      const result = await request.json();
+      console.log(result);
       return request;
     }
     if (radioInputSelected === 'name') {
