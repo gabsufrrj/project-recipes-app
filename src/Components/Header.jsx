@@ -12,8 +12,6 @@ function Header({ title, renderInput, apiName, history }) {
     setSearchBarValue(target.value);
   };
 
-  // console.log(searchBarValue);
-
   return (
     <header>
       <Link to="/profile">
@@ -43,16 +41,21 @@ function Header({ title, renderInput, apiName, history }) {
           data-testid="search-input"
           value={ searchBarValue }
         />}
-      <RadioButtons apiName={ apiName } history={ history } />
+      {(history) && <RadioButtons apiName={ apiName } history={ history } />}
     </header>
   );
 }
 
+Header.defaultProps = {
+  history: undefined,
+  apiName: undefined,
+};
+
 Header.propTypes = {
   title: PropTypes.string.isRequired,
   renderInput: PropTypes.bool.isRequired,
-  apiName: PropTypes.string.isRequired,
-  history: PropTypes.objectOf(PropTypes.any.isRequired).isRequired,
+  apiName: PropTypes.string,
+  history: PropTypes.objectOf(PropTypes.any.isRequired),
 };
 
 export default Header;

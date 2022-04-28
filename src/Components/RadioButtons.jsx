@@ -21,7 +21,7 @@ function RadioButtons({ history: { location, push }, apiName }) {
 
   const checkAmountOfRecipes = (json) => {
     const valuesJson = Object.values(json)[0];
-    if (valuesJson === null) {
+    if (!valuesJson) {
       return global.alert('Sorry, we haven\'t found any recipes for these filters.');
     }
     setRecipes(valuesJson);

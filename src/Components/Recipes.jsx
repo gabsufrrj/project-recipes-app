@@ -9,7 +9,7 @@ function Recipes({ typeOfRecipe }) {
 
   return (
     <div>
-      {(recipes.length > 0) && (
+      {(recipes.length) && (
         recipes.slice(0, number12).map((e, index) => (
           <div key={ `${index}-recipe-card` } data-testid={ `${index}-recipe-card` }>
             <h2
