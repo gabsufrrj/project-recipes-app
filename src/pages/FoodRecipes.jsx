@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Header from '../Components/Header';
+import RadioButtons from '../Components/RadioButtons';
 import Footer from '../Components/Footer';
 
 function FoodRecipes({ history }) {
   return (
     <div>
-      <Header title="Foods" renderInput apiName="themealdb" history={ history } />
+      <Header title="Foods" renderInput />
+      <RadioButtons apiName="themealdb" history={ history } />
       <h1>
         FoodRecipes
       </h1>

@@ -1,7 +1,8 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import recipesContext from '../Context/MyContext';
 import Recipes from './Recipes';
+import firstFetch from '../helpers/firstFetch';
 
 function RadioButtons({ history: { location, push }, apiName }) {
   const {
@@ -10,6 +11,11 @@ function RadioButtons({ history: { location, push }, apiName }) {
     searchBarValue,
     setRecipes,
   } = useContext(recipesContext);
+
+  useEffect(() => {
+    firstFetch(apiName, setRecipes);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleChange = ({ target }) => {
     setRadioInputSelected(target.id);
