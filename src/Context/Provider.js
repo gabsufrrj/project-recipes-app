@@ -6,6 +6,7 @@ function Provider({ children }) {
   const [searchBarValue, setSearchBarValue] = useState('');
   const [radioInputSelected, setRadioInputSelected] = useState(false);
   const [recipes, setRecipes] = useState([]);
+  const [categories, setCategories] = useState([]);
 
   const contextValue = {
     radioInputSelected,
@@ -14,7 +15,10 @@ function Provider({ children }) {
     setSearchBarValue,
     recipes,
     setRecipes,
+    categories,
+    setCategories,
   };
+
   return (
     <recipesContext.Provider value={ contextValue }>
       {children}
