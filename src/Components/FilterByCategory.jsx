@@ -1,10 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import recipesContext from '../Context/MyContext';
+import firstFetch from '../helpers/firstFetch';
 
 function FilterByCategories({ apiName }) {
   const { setRecipes } = useContext(recipesContext);
   const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState('');
 
   const fetchRecipesByCategory = async (category) => {
     const url = `https://www.${apiName}.com/api/json/v1/1/filter.php?c=${category}`;
@@ -14,6 +16,16 @@ function FilterByCategories({ apiName }) {
       setRecipes(Object.values(json)[0]);
     } catch (error) {
       console.log(error);
+    }
+  };
+
+  const handleClick = (category) => {
+    if (category === selectedCategory) {
+      firstFetch(apiName, setRecipes);
+      setSelectedCategory('');
+    } else {
+      fetchRecipesByCategory(category);
+      setSelectedCategory(category);
     }
   };
 
@@ -43,7 +55,7 @@ function FilterByCategories({ apiName }) {
           key={ e }
           data-testid={ `${e}-category-filter` }
           value={ e }
-          onClick={ () => fetchRecipesByCategory(e) }
+          onClick={ () => handleClick(e) }
         >
           { e }
         </button>
