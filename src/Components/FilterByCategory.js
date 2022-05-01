@@ -16,16 +16,14 @@ function FilterByCategories({ apiName }) {
   return (
     <div>
       {(categories.length > 0) && categories.map((e) => (
-        <label key={ e } htmlFor={ e }>
-          <input
-            data-testid={ `${e}-category-filter` }
-            type="radio"
-            id={ e }
-            name="category"
-            value={ e }
-          />
+        <button
+          type="button"
+          key={ e }
+          data-testid={ `${e}-category-filter` }
+          value={ e }
+        >
           { e }
-        </label>
+        </button>
       ))}
     </div>
   );
