@@ -20,7 +20,7 @@ function FilterByCategories({ apiName }) {
   };
 
   const handleClick = (category) => {
-    if (category === selectedCategory) {
+    if (category === selectedCategory || category === 'All') {
       firstFetch(apiName, setRecipes);
       setSelectedCategory('');
     } else {
@@ -60,6 +60,13 @@ function FilterByCategories({ apiName }) {
           { e }
         </button>
       ))}
+      <button
+        type="button"
+        data-testid="All-category-filter"
+        onClick={ () => handleClick('All') }
+      >
+        All
+      </button>
     </div>
   );
 }
