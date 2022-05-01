@@ -1,9 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import recipesContext from '../Context/MyContext';
-import Recipes from './Recipes';
 import firstFetch from '../helpers/firstFetch';
-import FilterByCategories from './FilterByCategory';
 
 function RadioButtons({ history: { location, push }, apiName }) {
   const {
@@ -106,8 +104,6 @@ function RadioButtons({ history: { location, push }, apiName }) {
           Search
         </button>
       </div>
-      <FilterByCategories apiName={ apiName } />
-      <Recipes typeOfRecipe={ typeOfRecipe } />
     </section>
 
   );

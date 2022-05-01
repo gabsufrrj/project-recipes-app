@@ -2,8 +2,12 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import recipesContext from '../Context/MyContext';
 
-function Recipes({ typeOfRecipe }) {
+function Recipes({ history: { location } }) {
   const { recipes } = useContext(recipesContext);
+
+  const typeOfRecipe = () => (
+    (location.pathname.includes('foods') ? 'Meal' : 'Drink')
+  );
 
   const number12 = 12;
 
@@ -32,5 +36,5 @@ function Recipes({ typeOfRecipe }) {
 export default Recipes;
 
 Recipes.propTypes = {
-  typeOfRecipe: PropTypes.func.isRequired,
+  history: PropTypes.shape(PropTypes.any.isRequired).isRequired,
 };
