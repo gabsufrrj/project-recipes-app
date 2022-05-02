@@ -54,7 +54,7 @@ function RecipeInProgress({ recipeId, apiName }) {
     return ingredients;
   };
 
-  const saveAtLocalStorage = ({ target: { id, checked } }) => {
+  const saveProgress = ({ target: { id, checked } }) => {
     let inProgressRecipes = getProgress();
     if (checked) {
       inProgressRecipes.push(id);
@@ -132,7 +132,7 @@ function RecipeInProgress({ recipeId, apiName }) {
                   <input
                     type="checkbox"
                     id={ e }
-                    onChange={ saveAtLocalStorage }
+                    onChange={ saveProgress }
                     checked={ progress.includes(e) }
                   />
                   {e}
@@ -141,7 +141,13 @@ function RecipeInProgress({ recipeId, apiName }) {
             ))}
           </div>
           <p data-testid="instructions">{detailsRecipe.strInstructions}</p>
-          <button data-testid="finish-recipe-btn" type="button">Finalizar</button>
+          <button
+            data-testid="finish-recipe-btn"
+            type="button"
+            disabled={ (progress.length !== getIngredients().length) }
+          >
+            Finalizar
+          </button>
         </>)}
     </section>
   );
