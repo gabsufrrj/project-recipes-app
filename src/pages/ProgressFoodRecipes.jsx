@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import RecipeInProgress from '../Components/RecipeInProgress';
 
 function ProgressFoodRecipes({ match: { params: { id } } }) {
+  console.log();
   return (
     <RecipeInProgress recipeId={ id } apiName="themealdb" />
   );

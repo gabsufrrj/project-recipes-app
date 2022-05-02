@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
+import whiteHeartIcon from '../images/whiteHeartIcon.svg';
+import blackHeartIcon from '../images/blackHeartIcon.svg';
 
 function RecipeInProgress({ recipeId, apiName }) {
   const [detailsRecipe, setDatailsRecipe] = useState(null);
   const [progress, setProgress] = useState([]);
+  const [favoriteRecipes, setFavoriteRecipes] = useState([]);
   const history = useHistory();
 
   const getProgress = () => {
@@ -15,15 +18,25 @@ function RecipeInProgress({ recipeId, apiName }) {
     return inProgressRecipes;
   };
 
+  const getFavoriteRecipesFromStorage = () => {
+    let getFavoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
+    if (!getFavoriteRecipes) {
+      getFavoriteRecipes = [];
+    }
+    return getFavoriteRecipes;
+  };
+
   useEffect(() => {
     const fetchDetailsRecipe = async () => {
       const request = await fetch(`https://www.${apiName}.com/api/json/v1/1/lookup.php?i=${recipeId}`);
       const json = await request.json();
       const datailsRecipeObject = Object.values(json)[0][0];
       setDatailsRecipe(datailsRecipeObject);
+      console.log(datailsRecipeObject);
     };
     fetchDetailsRecipe();
     setProgress(getProgress());
+    setFavoriteRecipes(getFavoriteRecipesFromStorage());
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -52,6 +65,38 @@ function RecipeInProgress({ recipeId, apiName }) {
     setProgress(inProgressRecipes);
   };
 
+  const share = ({ target }) => {
+    const number1 = 1;
+    let url = window.location.href.split('/');
+    url = url.slice(0, -number1).join('/');
+    navigator.clipboard.writeText(url);
+    target.innerHTML = 'Link copied!';
+  };
+
+  const favorite = () => {
+    const recipe = {
+      id: detailsRecipe[`id${typeOfRecipe()}`],
+      type: (history.location.pathname.includes('foods')) ? 'food' : 'drink',
+      nationality: (detailsRecipe.strArea) ? detailsRecipe.strArea : '',
+      category: detailsRecipe.strCategory,
+      alcoholicOrNot: (detailsRecipe.strAlcoholic) ? 'Alcoholic' : '',
+      name: detailsRecipe[`str${typeOfRecipe()}`],
+      image: detailsRecipe[`str${typeOfRecipe()}Thumb`],
+    };
+    let getFavoriteRecipes = getFavoriteRecipesFromStorage();
+    if (getFavoriteRecipes.some((e) => e.name === recipe.name)) {
+      getFavoriteRecipes = getFavoriteRecipes.filter((e) => e.name !== recipe.name);
+    } else {
+      getFavoriteRecipes.push(recipe);
+    }
+    localStorage.setItem('favoriteRecipes', JSON.stringify(getFavoriteRecipes));
+    setFavoriteRecipes(getFavoriteRecipes);
+  };
+
+  const putFavoriteImage = (nameRecipe) => (
+    (favoriteRecipes.some((e) => e.name === nameRecipe)) ? blackHeartIcon : whiteHeartIcon
+  );
+
   return (
     <section>
       {(detailsRecipe) && (
@@ -63,8 +108,20 @@ function RecipeInProgress({ recipeId, apiName }) {
             src={ detailsRecipe[`str${typeOfRecipe()}Thumb`] }
             alt={ detailsRecipe[`str${typeOfRecipe()}`] }
           />
-          <button data-testid="share-btn" type="button">Compartilhar</button>
-          <button data-testid="favorite-btn" type="button">Favoritar</button>
+          <button
+            data-testid="share-btn"
+            type="button"
+            onClick={ share }
+          >
+            Compartilhar
+          </button>
+          <img
+            data-testid="favorite-btn"
+            src={ putFavoriteImage(detailsRecipe[`str${typeOfRecipe()}`]) }
+            alt="Favorite_Image"
+            onClick={ favorite }
+            aria-hidden="true"
+          />
           <div>
             {getIngredients().map((e, index) => (
               <div key={ e }>
