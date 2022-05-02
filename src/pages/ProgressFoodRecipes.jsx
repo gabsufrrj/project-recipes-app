@@ -4,7 +4,7 @@ import RecipeInProgress from '../Components/RecipeInProgress';
 
 function ProgressFoodRecipes({ match: { params: { id } } }) {
   return (
-    <RecipeInProgress id={ id } apiName="themealdb" />
+    <RecipeInProgress recipeId={ id } apiName="themealdb" />
   );
 }
 

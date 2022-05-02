@@ -2,18 +2,28 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 
-function RecipeInProgress({ id, apiName }) {
+function RecipeInProgress({ recipeId, apiName }) {
   const [detailsRecipe, setDatailsRecipe] = useState(null);
+  const [progress, setProgress] = useState([]);
   const history = useHistory();
+
+  const getProgress = () => {
+    let inProgressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    if (!inProgressRecipes) {
+      inProgressRecipes = [];
+    }
+    return inProgressRecipes;
+  };
 
   useEffect(() => {
     const fetchDetailsRecipe = async () => {
-      const request = await fetch(`https://www.${apiName}.com/api/json/v1/1/lookup.php?i=${id}`);
+      const request = await fetch(`https://www.${apiName}.com/api/json/v1/1/lookup.php?i=${recipeId}`);
       const json = await request.json();
       const datailsRecipeObject = Object.values(json)[0][0];
       setDatailsRecipe(datailsRecipeObject);
     };
     fetchDetailsRecipe();
+    setProgress(getProgress());
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -29,6 +39,17 @@ function RecipeInProgress({ id, apiName }) {
     ingredientsKeys.forEach((e) => (
       (detailsRecipe[e]) && ingredients.push(detailsRecipe[e])));
     return ingredients;
+  };
+
+  const saveAtLocalStorage = ({ target: { id, checked } }) => {
+    let inProgressRecipes = getProgress();
+    if (checked) {
+      inProgressRecipes.push(id);
+    } else {
+      inProgressRecipes = inProgressRecipes.filter((e) => e !== id);
+    }
+    localStorage.setItem('inProgressRecipes', JSON.stringify(inProgressRecipes));
+    setProgress(inProgressRecipes);
   };
 
   return (
@@ -51,7 +72,12 @@ function RecipeInProgress({ id, apiName }) {
                   data-testid={ `${index}-ingredient-step` }
                   htmlFor={ e }
                 >
-                  <input type="checkbox" id={ e } />
+                  <input
+                    type="checkbox"
+                    id={ e }
+                    onChange={ saveAtLocalStorage }
+                    checked={ progress.includes(e) }
+                  />
                   {e}
                 </label>
               </div>
@@ -67,6 +93,6 @@ function RecipeInProgress({ id, apiName }) {
 export default RecipeInProgress;
 
 RecipeInProgress.propTypes = {
-  id: PropTypes.string.isRequired,
+  recipeId: PropTypes.string.isRequired,
   apiName: PropTypes.string.isRequired,
 };
