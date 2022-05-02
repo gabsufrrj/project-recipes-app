@@ -18,8 +18,8 @@ function RecipeInProgress({ id, apiName }) {
   }, []);
 
   const typeOfRecipe = () => {
-    const { location } = history;
-    return (location.pathname.includes('foods') ? 'Meal' : 'Drink');
+    const { location: { pathname } } = history;
+    return (pathname.includes('foods') ? 'Meal' : 'Drink');
   };
 
   const getIngredients = () => {
@@ -44,11 +44,19 @@ function RecipeInProgress({ id, apiName }) {
           />
           <button data-testid="share-btn" type="button">Compartilhar</button>
           <button data-testid="favorite-btn" type="button">Favoritar</button>
-          <ul>
+          <div>
             {getIngredients().map((e, index) => (
-              <li key={ e } data-testid={ `${index}-ingredient-step` }>{e}</li>
+              <div key={ e }>
+                <label
+                  data-testid={ `${index}-ingredient-step` }
+                  htmlFor={ e }
+                >
+                  <input type="checkbox" id={ e } />
+                  {e}
+                </label>
+              </div>
             ))}
-          </ul>
+          </div>
           <p data-testid="instructions">{detailsRecipe.strInstructions}</p>
           <button data-testid="finish-recipe-btn" type="button">Finalizar</button>
         </>)}
