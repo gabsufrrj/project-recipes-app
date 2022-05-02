@@ -15,6 +15,7 @@ function Provider({ children }) {
     recipes,
     setRecipes,
   };
+
   return (
     <recipesContext.Provider value={ contextValue }>
       {children}
