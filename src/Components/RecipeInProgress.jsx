@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import RecipeDetailsInProgress from './RecipeDetailsInProgress';
+import getFromLocalStorage from '../helpers/getFromLocalStorage';
 
 function RecipeInProgress({ recipeId, apiName }) {
   const [detailsRecipe, setDatailsRecipe] = useState(null);
@@ -14,22 +15,6 @@ function RecipeInProgress({ recipeId, apiName }) {
     return (pathname.includes('foods') ? 'Meal' : 'Drink');
   };
 
-  const getProgress = () => {
-    let inProgressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
-    if (!inProgressRecipes) {
-      inProgressRecipes = {};
-    }
-    return inProgressRecipes;
-  };
-
-  const getFavoriteRecipesFromStorage = () => {
-    let getFavoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
-    if (!getFavoriteRecipes) {
-      getFavoriteRecipes = [];
-    }
-    return getFavoriteRecipes;
-  };
-
   useEffect(() => {
     const fetchDetailsRecipe = async () => {
       const request = await fetch(`https://www.${apiName}.com/api/json/v1/1/lookup.php?i=${recipeId}`);
@@ -38,8 +23,8 @@ function RecipeInProgress({ recipeId, apiName }) {
       setDatailsRecipe(datailsRecipeObject);
     };
     fetchDetailsRecipe();
-    setProgress(getProgress());
-    setFavoriteRecipes(getFavoriteRecipesFromStorage());
+    setProgress(getFromLocalStorage('inProgressRecipes', {}));
+    setFavoriteRecipes(getFromLocalStorage('favoriteRecipes', []));
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -53,7 +38,7 @@ function RecipeInProgress({ recipeId, apiName }) {
   };
 
   const saveProgress = ({ target: { id, checked } }) => {
-    const inProgressRecipes = getProgress();
+    const inProgressRecipes = getFromLocalStorage('inProgressRecipes', {});
     const nameRecipe = detailsRecipe[`str${typeOfRecipe()}`];
     if (!inProgressRecipes[nameRecipe]) {
       inProgressRecipes[nameRecipe] = [];
@@ -86,7 +71,7 @@ function RecipeInProgress({ recipeId, apiName }) {
       name: detailsRecipe[`str${typeOfRecipe()}`],
       image: detailsRecipe[`str${typeOfRecipe()}Thumb`],
     };
-    let getFavoriteRecipes = getFavoriteRecipesFromStorage();
+    let getFavoriteRecipes = getFromLocalStorage('favoriteRecipes', []);
     if (getFavoriteRecipes.some((e) => e.name === recipe.name)) {
       getFavoriteRecipes = getFavoriteRecipes.filter((e) => e.name !== recipe.name);
     } else {

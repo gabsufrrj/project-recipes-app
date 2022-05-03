@@ -1,10 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import getFromLocalStorage from '../helpers/getFromLocalStorage';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
+import getDate from '../helpers/getDate';
 
 function RecipeDetailsInProgress(props) {
+  const history = useHistory();
   const {
     detailsRecipe,
     progress,
@@ -22,9 +25,25 @@ function RecipeDetailsInProgress(props) {
     (favoriteRecipes.some((e) => e.name === nameRecipe)) ? blackHeartIcon : whiteHeartIcon
   );
 
+  const finishRecipe = () => {
+    const recipe = {
+      id: detailsRecipe[`id${typeOfRecipe()}`],
+      type: (history.location.pathname.includes('foods')) ? 'food' : 'drink',
+      nationality: (detailsRecipe.strArea) ? detailsRecipe.strArea : '',
+      category: detailsRecipe.strCategory,
+      alcoholicOrNot: (detailsRecipe.strAlcoholic) ? 'Alcoholic' : '',
+      name: detailsRecipe[`str${typeOfRecipe()}`],
+      image: detailsRecipe[`str${typeOfRecipe()}Thumb`],
+      doneDate: getDate(),
+      tags: detailsRecipe.strTags.split(',').slice(0, 2),
+    };
+    const getDoneRecipes = getFromLocalStorage('doneRecipes', []);
+    getDoneRecipes.push(recipe);
+    localStorage.setItem('doneRecipes', JSON.stringify(getDoneRecipes));
+  };
+
   return (
     <>
-      {}
       <h2 data-testid="recipe-title">{nameRecipe}</h2>
       <h3 data-testid="recipe-category">{detailsRecipe.strCategory}</h3>
       <img
@@ -70,10 +89,11 @@ function RecipeDetailsInProgress(props) {
         <button
           data-testid="finish-recipe-btn"
           type="button"
+          onClick={ finishRecipe }
           disabled={ (progress[nameRecipe]) ? (
             progress[nameRecipe].length !== getIngredients().length) : true }
         >
-          Finalizar
+          Finish Recipe
         </button>
       </Link>
     </>
