@@ -1,19 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
-import whiteHeartIcon from '../images/whiteHeartIcon.svg';
-import blackHeartIcon from '../images/blackHeartIcon.svg';
+import RecipeDetailsInProgress from './RecipeDetailsInProgress';
 
 function RecipeInProgress({ recipeId, apiName }) {
   const [detailsRecipe, setDatailsRecipe] = useState(null);
-  const [progress, setProgress] = useState([]);
+  const [progress, setProgress] = useState({});
   const [favoriteRecipes, setFavoriteRecipes] = useState([]);
   const history = useHistory();
+
+  const typeOfRecipe = () => {
+    const { location: { pathname } } = history;
+    return (pathname.includes('foods') ? 'Meal' : 'Drink');
+  };
 
   const getProgress = () => {
     let inProgressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
     if (!inProgressRecipes) {
-      inProgressRecipes = [];
+      inProgressRecipes = {};
     }
     return inProgressRecipes;
   };
@@ -32,18 +36,12 @@ function RecipeInProgress({ recipeId, apiName }) {
       const json = await request.json();
       const datailsRecipeObject = Object.values(json)[0][0];
       setDatailsRecipe(datailsRecipeObject);
-      console.log(datailsRecipeObject);
     };
     fetchDetailsRecipe();
     setProgress(getProgress());
     setFavoriteRecipes(getFavoriteRecipesFromStorage());
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const typeOfRecipe = () => {
-    const { location: { pathname } } = history;
-    return (pathname.includes('foods') ? 'Meal' : 'Drink');
-  };
 
   const getIngredients = () => {
     const ingredients = [];
@@ -55,11 +53,16 @@ function RecipeInProgress({ recipeId, apiName }) {
   };
 
   const saveProgress = ({ target: { id, checked } }) => {
-    let inProgressRecipes = getProgress();
+    const inProgressRecipes = getProgress();
+    const nameRecipe = detailsRecipe[`str${typeOfRecipe()}`];
+    if (!inProgressRecipes[nameRecipe]) {
+      inProgressRecipes[nameRecipe] = [];
+    }
     if (checked) {
-      inProgressRecipes.push(id);
+      inProgressRecipes[nameRecipe].push(id);
     } else {
-      inProgressRecipes = inProgressRecipes.filter((e) => e !== id);
+      inProgressRecipes[nameRecipe] = (
+        inProgressRecipes[nameRecipe].filter((e) => e !== id));
     }
     localStorage.setItem('inProgressRecipes', JSON.stringify(inProgressRecipes));
     setProgress(inProgressRecipes);
@@ -93,62 +96,20 @@ function RecipeInProgress({ recipeId, apiName }) {
     setFavoriteRecipes(getFavoriteRecipes);
   };
 
-  const putFavoriteImage = (nameRecipe) => (
-    (favoriteRecipes.some((e) => e.name === nameRecipe)) ? blackHeartIcon : whiteHeartIcon
-  );
-
   return (
     <section>
       {(detailsRecipe) && (
-        <>
-          <h2 data-testid="recipe-title">{detailsRecipe[`str${typeOfRecipe()}`]}</h2>
-          <h3 data-testid="recipe-category">{detailsRecipe.strCategory}</h3>
-          <img
-            data-testid="recipe-photo"
-            src={ detailsRecipe[`str${typeOfRecipe()}Thumb`] }
-            alt={ detailsRecipe[`str${typeOfRecipe()}`] }
-          />
-          <button
-            data-testid="share-btn"
-            type="button"
-            onClick={ share }
-          >
-            Compartilhar
-          </button>
-          <img
-            data-testid="favorite-btn"
-            src={ putFavoriteImage(detailsRecipe[`str${typeOfRecipe()}`]) }
-            alt="Favorite_Image"
-            onClick={ favorite }
-            aria-hidden="true"
-          />
-          <div>
-            {getIngredients().map((e, index) => (
-              <div key={ e }>
-                <label
-                  data-testid={ `${index}-ingredient-step` }
-                  htmlFor={ e }
-                >
-                  <input
-                    type="checkbox"
-                    id={ e }
-                    onChange={ saveProgress }
-                    checked={ progress.includes(e) }
-                  />
-                  {e}
-                </label>
-              </div>
-            ))}
-          </div>
-          <p data-testid="instructions">{detailsRecipe.strInstructions}</p>
-          <button
-            data-testid="finish-recipe-btn"
-            type="button"
-            disabled={ (progress.length !== getIngredients().length) }
-          >
-            Finalizar
-          </button>
-        </>)}
+        <RecipeDetailsInProgress
+          detailsRecipe={ detailsRecipe }
+          progress={ progress }
+          favoriteRecipes={ favoriteRecipes }
+          typeOfRecipe={ typeOfRecipe }
+          share={ share }
+          favorite={ favorite }
+          saveProgress={ saveProgress }
+          getIngredients={ getIngredients }
+        />
+      )}
     </section>
   );
 }
