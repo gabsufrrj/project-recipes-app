@@ -3,6 +3,7 @@ import DoneRecipesFilterButtons from '../Components/DoneRecipesFilterButtons';
 import Header from '../Components/Header';
 import RenderDoneRecipes from '../Components/RenderDoneRecipes';
 import getFromLocalStorage from '../helpers/getFromLocalStorage';
+import '../CSS/DoneRecipes.css';
 
 function DoneRecipes() {
   const [filter, setFilter] = useState('all');
@@ -18,8 +19,10 @@ function DoneRecipes() {
   return (
     <div>
       <Header title="Done Recipes" renderInput={ false } />
-      <DoneRecipesFilterButtons setFilter={ setFilter } />
-      <RenderDoneRecipes filteredDoneRecipes={ filteredDoneRecipes } />
+      <section className="done-recipes-section">
+        <DoneRecipesFilterButtons setFilter={ setFilter } />
+        <RenderDoneRecipes filteredDoneRecipes={ filteredDoneRecipes } />
+      </section>
     </div>
   );
 }
