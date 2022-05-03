@@ -14,8 +14,8 @@ function RenderDoneRecipes() {
           alt={ e.name }
         />
         <h3 data-testid={ `${index}-horizontal-top-text` }>
-          {(e.type === 'food') && `${e.nationality} - `}
-          {e.category}
+          {(e.type === 'food') ? (
+            `${e.nationality} - ${e.category}`) : `${e.alcoholicOrNot}`}
         </h3>
         <h2 data-testid={ `${index}-horizontal-name` }>{e.name}</h2>
         <h4>
