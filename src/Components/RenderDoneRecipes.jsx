@@ -1,10 +1,7 @@
 import React from 'react';
-import getFromLocalStorage from '../helpers/getFromLocalStorage';
 import shareImage from '../images/shareIcon.svg';
 
-function RenderDoneRecipes() {
-  const getDoneRecipes = getFromLocalStorage('doneRecipes', []);
-
+function RenderDoneRecipes({ filteredDoneRecipes }) {
   const share = (target, recipe) => {
     const number1 = 1;
     const url = window.location.href.split('/').slice(0, -number1).join('/');
@@ -15,7 +12,7 @@ function RenderDoneRecipes() {
   };
 
   return (
-    getDoneRecipes.map((e, index) => (
+    filteredDoneRecipes.map((e, index) => (
       <div key={ e.name }>
         <img
           data-testid={ `${index}-horizontal-image` }

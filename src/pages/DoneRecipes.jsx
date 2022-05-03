@@ -1,23 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import DoneRecipesFilterButtons from '../Components/DoneRecipesFilterButtons';
 import Header from '../Components/Header';
 import RenderDoneRecipes from '../Components/RenderDoneRecipes';
+import getFromLocalStorage from '../helpers/getFromLocalStorage';
 
 function DoneRecipes() {
+  const [filter, setFilter] = useState('all');
+  const [filteredDoneRecipes, setFilteredDoneRecipes] = useState([]);
+
+  useEffect(() => {
+    const doneRecipes = getFromLocalStorage('doneRecipes', []);
+    const filterDoneRecipes = (filter === 'all')
+      ? doneRecipes : doneRecipes.filter((e) => e.type === filter);
+    setFilteredDoneRecipes(filterDoneRecipes);
+  }, [filter]);
+
   return (
     <div>
       <Header title="Done Recipes" renderInput={ false } />
-      <div>
-        <button type="button" data-testid="filter-by-all-btn">
-          All
-        </button>
-        <button type="button" data-testid="filter-by-food-btn">
-          Food
-        </button>
-        <button type="button" data-testid="filter-by-drink-btn">
-          Drinks
-        </button>
-      </div>
-      <RenderDoneRecipes />
+      <DoneRecipesFilterButtons setFilter={ setFilter } />
+      <RenderDoneRecipes filteredDoneRecipes={ filteredDoneRecipes } />
     </div>
   );
 }
