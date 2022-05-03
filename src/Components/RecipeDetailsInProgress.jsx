@@ -35,7 +35,8 @@ function RecipeDetailsInProgress(props) {
       name: detailsRecipe[`str${typeOfRecipe()}`],
       image: detailsRecipe[`str${typeOfRecipe()}Thumb`],
       doneDate: getDate(),
-      tags: detailsRecipe.strTags.split(',').slice(0, 2),
+      tags: (detailsRecipe.strTags) ? (
+        detailsRecipe.strTags.split(',').slice(0, 2)) : [],
     };
     const getDoneRecipes = getFromLocalStorage('doneRecipes', []);
     getDoneRecipes.push(recipe);
