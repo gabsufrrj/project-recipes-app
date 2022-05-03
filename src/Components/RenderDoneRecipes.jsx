@@ -5,6 +5,15 @@ import shareImage from '../images/shareIcon.svg';
 function RenderDoneRecipes() {
   const getDoneRecipes = getFromLocalStorage('doneRecipes', []);
 
+  const share = (target, recipe) => {
+    const number1 = 1;
+    const url = window.location.href.split('/').slice(0, -number1).join('/');
+    navigator.clipboard.writeText(`${url}/${recipe.type}s/${recipe.id}`);
+    document.querySelectorAll('.link-copied').forEach((e) => { e.innerHTML = ''; });
+    console.log();
+    target.parentElement.querySelector('.link-copied').innerHTML = 'Link copied!';
+  };
+
   return (
     getDoneRecipes.map((e, index) => (
       <div key={ e.name }>
@@ -31,11 +40,16 @@ function RenderDoneRecipes() {
               {tag}
             </span>))}
         </div>
-        <img
-          data-testid={ `${index}-horizontal-share-btn` }
-          src={ shareImage }
-          alt="Share"
-        />
+        <div>
+          <img
+            data-testid={ `${index}-horizontal-share-btn` }
+            src={ shareImage }
+            alt="Share"
+            onClick={ ({ target }) => share(target, e) }
+            aria-hidden="true"
+          />
+          <span className="link-copied">{`${''}`}</span>
+        </div>
       </div>
     ))
   );
