@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import StartRecipe from './StartRecipeButton';
 
 function DrinkDetails({ drinkDetails: { strDrinkThumb, strDrink, strAlcoholic,
   strInstructions }, drinkDetails }) {
@@ -53,7 +54,7 @@ function DrinkDetails({ drinkDetails: { strDrinkThumb, strDrink, strAlcoholic,
       <div data-testid="0-recomendation-card">
         <h3>Recommended</h3>
       </div>
-      <img data-testid="start-recipe-btn" alt="start" />
+      <StartRecipe type="drinks" />
     </div>
   );
 }

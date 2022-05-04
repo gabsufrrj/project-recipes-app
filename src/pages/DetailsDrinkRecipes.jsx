@@ -1,14 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import DrinkDetails from '../Components/DrinkDetails';
+import recipesContext from '../Context/MyContext';
 
 function DetailsDrinkRecipes({ match }) {
   const [drinkDetails, setDrinkDetails] = useState();
   const [loading, setLoading] = useState(true);
   const [foods, setFoods] = useState();
+  const { setId } = useContext(recipesContext);
   useEffect(() => {
     const getDrinkDetails = async () => {
-      const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${match.params.id}`);
+      const { id } = match.params;
+      setId(id);
+      const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`);
       const result = await response.json();
       console.log(result);
       setDrinkDetails(result.drinks[0]);
