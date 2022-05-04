@@ -2,8 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import shareImage from '../images/shareIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
+import getFromLocalStorage from '../helpers/getFromLocalStorage';
 
-function RenderFavoriteRecipes({ filteredFavoriteRecipes }) {
+function RenderFavoriteRecipes(props) {
+  const { filteredFavoriteRecipes, filter, setFilteredFavoriteRecipes } = props;
+
   const share = (target, recipe) => {
     const number1 = 1;
     const url = window.location.href.split('/').slice(0, -number1).join('/');
@@ -11,6 +14,14 @@ function RenderFavoriteRecipes({ filteredFavoriteRecipes }) {
     document.querySelectorAll('.link-copied').forEach((e) => { e.innerHTML = ''; });
     console.log();
     target.parentElement.querySelector('.link-copied').innerHTML = 'Link copied!';
+  };
+
+  const dislike = (receita) => {
+    let favoriteRecipes = getFromLocalStorage('favoriteRecipes', []);
+    favoriteRecipes = favoriteRecipes.filter((e) => e.name !== receita.name);
+    localStorage.setItem('favoriteRecipes', JSON.stringify(favoriteRecipes));
+    setFilteredFavoriteRecipes((filter === 'all')
+      ? favoriteRecipes : favoriteRecipes.filter((e) => e.type === filter));
   };
 
   return (
@@ -43,8 +54,8 @@ function RenderFavoriteRecipes({ filteredFavoriteRecipes }) {
               data-testid={ `${index}-horizontal-favorite-btn` }
               src={ blackHeartIcon }
               alt="Favorite_Image"
-              // onClick={ favorite }
-              // aria-hidden="true"
+              onClick={ () => dislike(e) }
+              aria-hidden="true"
             />
             <span className="link-copied">{`${''}`}</span>
           </div>
@@ -58,4 +69,6 @@ export default RenderFavoriteRecipes;
 
 RenderFavoriteRecipes.propTypes = {
   filteredFavoriteRecipes: PropTypes.arrayOf(PropTypes.any.isRequired).isRequired,
+  filter: PropTypes.string.isRequired,
+  setFilteredFavoriteRecipes: PropTypes.func.isRequired,
 };

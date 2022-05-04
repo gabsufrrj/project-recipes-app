@@ -10,10 +10,14 @@ function FavoriteRecipes() {
   const [filteredFavoriteRecipes, setFilteredFavoriteRecipes] = useState([]);
 
   useEffect(() => {
-    const favoriteRecipes = getFromLocalStorage('favoriteRecipes', []);
-    const filterFavoriteRecipes = (filter === 'all')
-      ? favoriteRecipes : favoriteRecipes.filter((e) => e.type === filter);
-    setFilteredFavoriteRecipes(filterFavoriteRecipes);
+    const getFilteredFavoriteRecipes = () => {
+      const favoriteRecipes = getFromLocalStorage('favoriteRecipes', []);
+      const filterFavoriteRecipes = (filter === 'all')
+        ? favoriteRecipes : favoriteRecipes.filter((e) => e.type === filter);
+      setFilteredFavoriteRecipes(filterFavoriteRecipes);
+    };
+    getFilteredFavoriteRecipes();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filter]);
 
   return (
@@ -21,7 +25,11 @@ function FavoriteRecipes() {
       <Header title="Favorite Recipes" renderInput={ false } />
       <section>
         <DoneAndFavoriteRecipesFilterButtons setFilter={ setFilter } />
-        <RenderFavoriteRecipes filteredFavoriteRecipes={ filteredFavoriteRecipes } />
+        <RenderFavoriteRecipes
+          filteredFavoriteRecipes={ filteredFavoriteRecipes }
+          filter={ filter }
+          setFilteredFavoriteRecipes={ setFilteredFavoriteRecipes }
+        />
       </section>
     </div>
   );
