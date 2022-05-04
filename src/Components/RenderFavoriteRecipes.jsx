@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import shareImage from '../images/shareIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import getFromLocalStorage from '../helpers/getFromLocalStorage';
@@ -28,17 +29,22 @@ function RenderFavoriteRecipes(props) {
     <div className="favorite-recipes">
       {filteredFavoriteRecipes.map((e, index) => (
         <div key={ e.name }>
-          <img
-            data-testid={ `${index}-horizontal-image` }
-            src={ e.image }
-            alt={ e.name }
-            className="done-recipe-image"
-          />
+          <Link to={ `/${e.type}s/${e.id}` }>
+            <img
+              style={ { width: '100px' } }
+              data-testid={ `${index}-horizontal-image` }
+              src={ e.image }
+              alt={ e.name }
+              className="done-recipe-image"
+            />
+          </Link>
           <h3 data-testid={ `${index}-horizontal-top-text` }>
             {(e.type === 'food') ? (
               `${e.nationality} - ${e.category}`) : `${e.alcoholicOrNot}`}
           </h3>
-          <h2 data-testid={ `${index}-horizontal-name` }>{e.name}</h2>
+          <Link to={ `/${e.type}s/${e.id}` }>
+            <h2 data-testid={ `${index}-horizontal-name` }>{e.name}</h2>
+          </Link>
           <div>
             <img
               data-testid={ `${index}-horizontal-share-btn` }
