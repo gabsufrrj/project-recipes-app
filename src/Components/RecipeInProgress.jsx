@@ -66,7 +66,7 @@ function RecipeInProgress({ recipeId, apiName }) {
     let url = window.location.href.split('/');
     url = url.slice(0, -number1).join('/');
     navigator.clipboard.writeText(url);
-    target.innerHTML = 'Link copied!';
+    target.parentElement.querySelector('.link-copied').innerHTML = 'Link copied!';
   };
 
   const favorite = () => {
@@ -90,7 +90,7 @@ function RecipeInProgress({ recipeId, apiName }) {
   };
 
   return (
-    <section>
+    <section className="recipe-in-progress-section">
       <h2>Recipe in progress</h2>
       {(!isFetching && detailsRecipe) && (
         <RecipeDetailsInProgress

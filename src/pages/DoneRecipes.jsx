@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from '../Components/Header';
 import DoneAndFavoriteRecipesFilterButtons from
 '../Components/DoneAndFavoriteRecipesFilterButtons';
@@ -12,10 +12,10 @@ function DoneRecipes() {
 
   useEffect(() => {
     const getFilteredFavoriteRecipes = () => {
-      const favoriteRecipes = getFromLocalStorage('favoriteRecipes', []);
-      const filterFavoriteRecipes = (filter === 'all')
-        ? favoriteRecipes : favoriteRecipes.filter((e) => e.type === filter);
-      setFilteredDoneRecipes(filterFavoriteRecipes);
+      const doneRecipes = getFromLocalStorage('doneRecipes', []);
+      const filterDoneRecipes = (filter === 'all')
+        ? doneRecipes : doneRecipes.filter((e) => e.type === filter);
+      setFilteredDoneRecipes(filterDoneRecipes);
     };
     getFilteredFavoriteRecipes();
   // eslint-disable-next-line react-hooks/exhaustive-deps

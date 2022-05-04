@@ -51,26 +51,29 @@ function FilterByCategories({ apiName }) {
 
   return (
     <div>
-      {(categories.length > 0) && categories.map((e) => (
-        <button
-          type="button"
-          key={ e }
-          data-testid={ `${e}-category-filter` }
-          value={ e }
-          onClick={ () => handleClick(e) }
-          disabled={ isFetching }
-        >
-          { e }
-        </button>
-      ))}
-      <button
-        type="button"
-        data-testid="All-category-filter"
-        onClick={ () => handleClick('All') }
-        disabled={ isFetching }
-      >
-        All
-      </button>
+      {(categories.length > 0) && (
+        <>
+          {categories.map((e) => (
+            <button
+              type="button"
+              key={ e }
+              data-testid={ `${e}-category-filter` }
+              value={ e }
+              onClick={ () => handleClick(e) }
+              disabled={ isFetching }
+            >
+              { e }
+            </button>))}
+          <button
+            type="button"
+            data-testid="All-category-filter"
+            onClick={ () => handleClick('All') }
+            disabled={ isFetching }
+          >
+            All
+          </button>
+        </>
+      )}
     </div>
   );
 }

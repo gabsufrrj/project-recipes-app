@@ -4,6 +4,7 @@ import DoneAndFavoriteRecipesFilterButtons from
 '../Components/DoneAndFavoriteRecipesFilterButtons';
 import RenderFavoriteRecipes from '../Components/RenderFavoriteRecipes';
 import getFromLocalStorage from '../helpers/getFromLocalStorage';
+import '../CSS/FavoriteRecipes.css';
 
 function FavoriteRecipes() {
   const [filter, setFilter] = useState('all');
@@ -23,7 +24,7 @@ function FavoriteRecipes() {
   return (
     <div>
       <Header title="Favorite Recipes" renderInput={ false } />
-      <section>
+      <section className="favorite-recipes-section">
         <DoneAndFavoriteRecipesFilterButtons setFilter={ setFilter } />
         <RenderFavoriteRecipes
           filteredFavoriteRecipes={ filteredFavoriteRecipes }

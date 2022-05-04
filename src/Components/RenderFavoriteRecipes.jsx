@@ -31,11 +31,10 @@ function RenderFavoriteRecipes(props) {
         <div key={ e.name }>
           <Link to={ `/${e.type}s/${e.id}` }>
             <img
-              style={ { width: '100px' } }
               data-testid={ `${index}-horizontal-image` }
               src={ e.image }
               alt={ e.name }
-              className="done-recipe-image"
+              className="favorite-recipe-image"
             />
           </Link>
           <h3 data-testid={ `${index}-horizontal-top-text` }>
@@ -55,16 +54,13 @@ function RenderFavoriteRecipes(props) {
             />
             <span className="link-copied">{`${''}`}</span>
           </div>
-          <div>
-            <img
-              data-testid={ `${index}-horizontal-favorite-btn` }
-              src={ blackHeartIcon }
-              alt="Favorite_Image"
-              onClick={ () => dislike(e) }
-              aria-hidden="true"
-            />
-            <span className="link-copied">{`${''}`}</span>
-          </div>
+          <img
+            data-testid={ `${index}-horizontal-favorite-btn` }
+            src={ blackHeartIcon }
+            alt="Favorite_Image"
+            onClick={ () => dislike(e) }
+            aria-hidden="true"
+          />
         </div>
       ))}
     </div>
