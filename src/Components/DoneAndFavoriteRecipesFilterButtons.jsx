@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function DoneRecipesFilterButtons({ setFilter }) {
+function DoneAndFavoriteRecipesFilterButtons({ setFilter }) {
   return (
     <div className="done-recipes-filter-buttons">
       <button
@@ -29,8 +29,8 @@ function DoneRecipesFilterButtons({ setFilter }) {
   );
 }
 
-export default DoneRecipesFilterButtons;
+export default DoneAndFavoriteRecipesFilterButtons;
 
-DoneRecipesFilterButtons.propTypes = {
+DoneAndFavoriteRecipesFilterButtons.propTypes = {
   setFilter: PropTypes.func.isRequired,
 };

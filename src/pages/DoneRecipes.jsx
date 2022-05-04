@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import DoneRecipesFilterButtons from '../Components/DoneRecipesFilterButtons';
 import Header from '../Components/Header';
+import DoneAndFavoriteRecipesFilterButtons from
+'../Components/DoneAndFavoriteRecipesFilterButtons';
 import RenderDoneRecipes from '../Components/RenderDoneRecipes';
 import getFromLocalStorage from '../helpers/getFromLocalStorage';
 import '../CSS/DoneRecipes.css';
@@ -20,7 +21,7 @@ function DoneRecipes() {
     <div>
       <Header title="Done Recipes" renderInput={ false } />
       <section className="done-recipes-section">
-        <DoneRecipesFilterButtons setFilter={ setFilter } />
+        <DoneAndFavoriteRecipesFilterButtons setFilter={ setFilter } />
         <RenderDoneRecipes filteredDoneRecipes={ filteredDoneRecipes } />
       </section>
     </div>
