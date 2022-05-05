@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import StartRecipe from './StartRecipeButton';
+import FavoriteAndShareBtn from './FavoriteAndShareBtn';
 
 function DrinkDetails({ drinkDetails: { strDrinkThumb, strDrink, strAlcoholic,
   strInstructions }, drinkDetails }) {
@@ -13,7 +14,8 @@ function DrinkDetails({ drinkDetails: { strDrinkThumb, strDrink, strAlcoholic,
     console.log(key);
     for (let i = 0; i < key.length; i += 1) {
       if (key[i].includes('strIngredient')
-          && drinkDetails[key[i]] !== '') {
+          && drinkDetails[key[i]] !== ''
+          && drinkDetails[key[i]] !== null) {
         myIngredients.push(drinkDetails[key[i]]);
       }
     }
@@ -34,8 +36,7 @@ function DrinkDetails({ drinkDetails: { strDrinkThumb, strDrink, strAlcoholic,
         {' '}
         { strDrink }
       </h2>
-      <img data-testid="share-btn" alt="share" />
-      <img data-testid="favorite-btn" alt="favorite" />
+      <FavoriteAndShareBtn />
       <p data-testid="recipe-category">{ strAlcoholic }</p>
       <img data-testid="share-btn" alt="share" />
       <h3>Ingredients</h3>

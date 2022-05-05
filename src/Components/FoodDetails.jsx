@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import StartRecipe from './StartRecipeButton';
+import FavoriteAndShareBtn from './FavoriteAndShareBtn';
+// import shareIcon from '../images/shareIcon.svg';
 
 function FoodDetails({ foodDetails: { strMealThumb, strMeal, strCategory,
   strInstructions, strYoutube }, foodDetails }) {
@@ -35,10 +37,9 @@ function FoodDetails({ foodDetails: { strMealThumb, strMeal, strCategory,
         {' '}
         { strMeal }
       </h2>
-      <img data-testid="share-btn" alt="share" />
-      <img data-testid="favorite-btn" alt="favorite" />
+      <FavoriteAndShareBtn />
       <p data-testid="recipe-category">{ strCategory }</p>
-      <img data-testid="share-btn" alt="" />
+      <img data-testid="share-btn" alt="" src="" />
       <h3>Ingredients</h3>
       <ul>
         {ingredients.map((ingredient, i) => (
