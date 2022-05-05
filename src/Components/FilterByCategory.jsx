@@ -24,7 +24,7 @@ function FilterByCategories({ apiName }) {
   const handleClick = (category) => {
     if (category === selectedCategory || category === 'All') {
       setSelectedCategory('');
-      firstFetch(apiName, setRecipes, setIsFetching);
+      firstFetch(apiName, setRecipes, null, setIsFetching);
     } else {
       setSelectedCategory(category);
       fetchRecipesByCategory(category);

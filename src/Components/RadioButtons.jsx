@@ -8,18 +8,8 @@ function RadioButtons({ history: { location, push }, apiName }) {
     setRadioInputSelected,
     searchBarValue,
     setRecipes,
-    selectedIngredient,
-    setSelectedIngredient,
     setIsFetching,
   } = useContext(recipesContext);
-
-  useEffect(() => {
-    firstFetch(apiName, setRecipes, selectedIngredient, setIsFetching);
-    return () => {
-      setSelectedIngredient(null);
-    };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   const handleChange = ({ target }) => {
     setRadioInputSelected(target.id);
