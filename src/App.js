@@ -18,6 +18,7 @@ import ExploreDrinkByIngredients from './pages/ExploreDrinkByIngredients';
 import ExploreFoodNationalities from './pages/ExploreFoodNationalities';
 import DoneRecipes from './pages/DoneRecipes';
 import FavoriteRecipes from './pages/FavoriteRecipes';
+import NotFound from './pages/NotFound';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
@@ -31,7 +32,7 @@ function App() {
           <Route exact path="/foods/:id" component={ DetailsFoodRecipes } />
           <Route exact path="/drinks/:id" component={ DetailsDrinkRecipes } />
           <Route path="/foods/:id/in-progress" component={ ProgressFoodRecipes } />
-          <Route path="/drink/:id/in-progress" component={ ProgressDrinkRecipes } />
+          <Route path="/drinks/:id/in-progress" component={ ProgressDrinkRecipes } />
           <Route exact path="/explore" component={ Explore } />
           <Route exact path="/explore/foods" component={ ExploreFood } />
           <Route exact path="/explore/drinks" component={ ExploreDrink } />
@@ -53,6 +54,7 @@ function App() {
           <Route exact path="/profile" component={ Profile } />
           <Route exact path="/done-recipes" component={ DoneRecipes } />
           <Route exact path="/favorite-recipes" component={ FavoriteRecipes } />
+          <Route exact path="/explore/drinks/nationalities" component={ NotFound } />
         </Switch>
       </BrowserRouter>
     </Provider>
