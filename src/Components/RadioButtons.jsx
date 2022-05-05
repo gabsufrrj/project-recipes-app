@@ -9,10 +9,15 @@ function RadioButtons({ history: { location, push }, apiName }) {
     setRadioInputSelected,
     searchBarValue,
     setRecipes,
+    selectedIngredient,
+    setSelectedIngredient,
   } = useContext(recipesContext);
 
   useEffect(() => {
-    firstFetch(apiName, setRecipes);
+    firstFetch(apiName, setRecipes, selectedIngredient);
+    return () => {
+      setSelectedIngredient(null);
+    };
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

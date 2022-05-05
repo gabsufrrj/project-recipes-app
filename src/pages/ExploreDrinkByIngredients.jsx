@@ -1,9 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { useHistory } from 'react-router';
 import Header from '../Components/Header';
 import Footer from '../Components/Footer';
+import recipesContext from '../Context/MyContext';
 
 function ExploreDrinkByIngredients() {
+  const { selectedIngredient, setSelectedIngredient } = useContext(recipesContext);
   const [drinkIngredientsList, setDrinkIngredientsList] = useState();
+  const history = useHistory();
 
   const fetchDrinkIngredientsFromApi = async () => {
     const URL = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list';
@@ -15,17 +19,27 @@ function ExploreDrinkByIngredients() {
     setDrinkIngredientsList(arrayOfDrinkIngredients);
   };
 
+  const handleClick = (ingredient) => {
+    setSelectedIngredient(ingredient);
+    history.push('/drinks');
+  };
+
   useEffect(() => {
     fetchDrinkIngredientsFromApi();
   }, []);
 
-  console.log(drinkIngredientsList);
+  console.log(selectedIngredient);
 
   return (
     <div>
       <Header title="Explore Ingredients" renderInput={ false } />
       {drinkIngredientsList && drinkIngredientsList.map((e, i) => (
-        <section key={ i } data-testid={ `${i}-ingredient-card` }>
+        <section
+          aria-hidden="true"
+          onClick={ () => handleClick(e.strIngredient1) }
+          key={ i }
+          data-testid={ `${i}-ingredient-card` }
+        >
           <img
             data-testid={ `${i}-card-img` }
             alt={ `${e.strIngredient1}` }

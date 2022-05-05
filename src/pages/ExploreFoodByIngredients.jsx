@@ -5,9 +5,8 @@ import Header from '../Components/Header';
 import Footer from '../Components/Footer';
 
 function ExploreFoodByIngredients() {
-  const { recipes, setRecipes } = useContext(recipesContext);
+  const { setSelectedIngredient } = useContext(recipesContext);
   const [ingredientsList, setIngredientsList] = useState();
-  const [selectedIngredient, setSelectedIngredient] = useState();
   const history = useHistory();
 
   const fetchFoodIngredientsFromApi = async () => {
@@ -25,22 +24,9 @@ function ExploreFoodByIngredients() {
     history.push('/foods');
   };
 
-  const fetchSelectedIngredient = async () => {
-    const URL = `https://www.themealdb.com/api/json/v1/1/filter.php?i=${selectedIngredient}`;
-    const request = await fetch(URL);
-    const json = await request.json();
-    setRecipes(json.meals[0]);
-  };
-
-  console.log(recipes);
-
   useEffect(() => {
     fetchFoodIngredientsFromApi();
   }, []);
-
-  useEffect(() => {
-    fetchSelectedIngredient();
-  }, [selectedIngredient]);
 
   return (
     <div>
