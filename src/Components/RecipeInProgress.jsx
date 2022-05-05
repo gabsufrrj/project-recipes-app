@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import RecipeDetailsInProgress from './RecipeDetailsInProgress';
 import getFromLocalStorage from '../helpers/getFromLocalStorage';
+import recipesContext from '../Context/MyContext';
 
 function RecipeInProgress({ recipeId, apiName }) {
+  const { isFetching, setIsFetching } = useContext(recipesContext);
   const [detailsRecipe, setDatailsRecipe] = useState(null);
   const [progress, setProgress] = useState({});
   const [favoriteRecipes, setFavoriteRecipes] = useState([]);
@@ -17,10 +19,16 @@ function RecipeInProgress({ recipeId, apiName }) {
 
   useEffect(() => {
     const fetchDetailsRecipe = async () => {
-      const request = await fetch(`https://www.${apiName}.com/api/json/v1/1/lookup.php?i=${recipeId}`);
-      const json = await request.json();
-      const datailsRecipeObject = Object.values(json)[0][0];
-      setDatailsRecipe(datailsRecipeObject);
+      try {
+        setIsFetching(true);
+        const request = await fetch(`https://www.${apiName}.com/api/json/v1/1/lookup.php?i=${recipeId}`);
+        const json = await request.json();
+        const datailsRecipeObject = Object.values(json)[0][0];
+        setDatailsRecipe(datailsRecipeObject);
+      } catch (error) {
+        global.alert('Oops, an error has occurred. Reload the page!');
+      }
+      setIsFetching(false);
     };
     fetchDetailsRecipe();
     setProgress(getFromLocalStorage('inProgressRecipes', {}));
@@ -58,7 +66,7 @@ function RecipeInProgress({ recipeId, apiName }) {
     let url = window.location.href.split('/');
     url = url.slice(0, -number1).join('/');
     navigator.clipboard.writeText(url);
-    target.innerHTML = 'Link copied!';
+    target.parentElement.querySelector('.link-copied').innerHTML = 'Link copied!';
   };
 
   const favorite = () => {
@@ -82,8 +90,9 @@ function RecipeInProgress({ recipeId, apiName }) {
   };
 
   return (
-    <section>
-      {(detailsRecipe) && (
+    <section className="recipe-in-progress-section">
+      <h2>Recipe in progress</h2>
+      {(!isFetching && detailsRecipe) && (
         <RecipeDetailsInProgress
           detailsRecipe={ detailsRecipe }
           progress={ progress }
@@ -95,6 +104,7 @@ function RecipeInProgress({ recipeId, apiName }) {
           getIngredients={ getIngredients }
         />
       )}
+      {(isFetching) && <h2>Loading...</h2>}
     </section>
   );
 }

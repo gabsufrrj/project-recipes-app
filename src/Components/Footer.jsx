@@ -1,6 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../CSS/Footer.css';
+import drinkIcon from '../images/drinkIcon.svg';
+import exploreIcon from '../images/exploreIcon.svg';
+import mealIcon from '../images/mealIcon.svg';
 
 function Footer() {
   return (
@@ -9,7 +12,7 @@ function Footer() {
         <input
           type="image"
           data-testid="drinks-bottom-btn"
-          src="../images/drinkIcon.svg"
+          src={ drinkIcon }
           alt="drinks"
         />
       </Link>
@@ -17,7 +20,7 @@ function Footer() {
         <input
           type="image"
           data-testid="explore-bottom-btn"
-          src="../images/exploreIcon.svg"
+          src={ exploreIcon }
           alt="explore"
         />
       </Link>
@@ -25,7 +28,7 @@ function Footer() {
         <input
           type="image"
           data-testid="food-bottom-btn"
-          src="../images/mealIcon.svg"
+          src={ mealIcon }
           alt="foods"
         />
       </Link>

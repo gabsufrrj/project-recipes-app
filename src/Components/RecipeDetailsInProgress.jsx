@@ -4,6 +4,7 @@ import { Link, useHistory } from 'react-router-dom';
 import getFromLocalStorage from '../helpers/getFromLocalStorage';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
+import shareIcon from '../images/shareIcon.svg';
 import getDate from '../helpers/getDate';
 
 function RecipeDetailsInProgress(props) {
@@ -52,13 +53,16 @@ function RecipeDetailsInProgress(props) {
         src={ detailsRecipe[`str${typeOfRecipe()}Thumb`] }
         alt={ nameRecipe }
       />
-      <button
-        data-testid="share-btn"
-        type="button"
-        onClick={ share }
-      >
-        Compartilhar
-      </button>
+      <div>
+        <img
+          data-testid="share-btn"
+          src={ shareIcon }
+          alt="Share"
+          onClick={ share }
+          aria-hidden="true"
+        />
+        <span className="link-copied">{`${''}`}</span>
+      </div>
       <img
         data-testid="favorite-btn"
         src={ putFavoriteImage() }
