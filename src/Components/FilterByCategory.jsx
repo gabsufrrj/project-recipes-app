@@ -4,28 +4,30 @@ import recipesContext from '../Context/MyContext';
 import firstFetch from '../helpers/firstFetch';
 
 function FilterByCategories({ apiName }) {
-  const { setRecipes } = useContext(recipesContext);
+  const { setRecipes, setIsFetching, isFetching } = useContext(recipesContext);
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('');
 
   const fetchRecipesByCategory = async (category) => {
     const url = `https://www.${apiName}.com/api/json/v1/1/filter.php?c=${category}`;
     try {
+      setIsFetching(true);
       const request = await fetch(url);
       const json = await request.json();
       setRecipes(Object.values(json)[0]);
     } catch (error) {
       console.log(error);
     }
+    setIsFetching(false);
   };
 
   const handleClick = (category) => {
     if (category === selectedCategory || category === 'All') {
-      firstFetch(apiName, setRecipes);
       setSelectedCategory('');
+      firstFetch(apiName, setRecipes, setIsFetching);
     } else {
-      fetchRecipesByCategory(category);
       setSelectedCategory(category);
+      fetchRecipesByCategory(category);
     }
   };
 
@@ -49,24 +51,29 @@ function FilterByCategories({ apiName }) {
 
   return (
     <div>
-      {(categories.length > 0) && categories.map((e) => (
-        <button
-          type="button"
-          key={ e }
-          data-testid={ `${e}-category-filter` }
-          value={ e }
-          onClick={ () => handleClick(e) }
-        >
-          { e }
-        </button>
-      ))}
-      <button
-        type="button"
-        data-testid="All-category-filter"
-        onClick={ () => handleClick('All') }
-      >
-        All
-      </button>
+      {(categories.length > 0) && (
+        <>
+          {categories.map((e) => (
+            <button
+              type="button"
+              key={ e }
+              data-testid={ `${e}-category-filter` }
+              value={ e }
+              onClick={ () => handleClick(e) }
+              disabled={ isFetching }
+            >
+              { e }
+            </button>))}
+          <button
+            type="button"
+            data-testid="All-category-filter"
+            onClick={ () => handleClick('All') }
+            disabled={ isFetching }
+          >
+            All
+          </button>
+        </>
+      )}
     </div>
   );
 }

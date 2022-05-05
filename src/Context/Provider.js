@@ -7,6 +7,8 @@ function Provider({ children }) {
   const [radioInputSelected, setRadioInputSelected] = useState(false);
   const [recipes, setRecipes] = useState([]);
   const [selectedIngredient, setSelectedIngredient] = useState();
+  const [id, setId] = useState('');
+  const [isFetching, setIsFetching] = useState(true);
 
   const contextValue = {
     radioInputSelected,
@@ -17,6 +19,10 @@ function Provider({ children }) {
     setRecipes,
     selectedIngredient,
     setSelectedIngredient,
+    id,
+    setId,
+    isFetching,
+    setIsFetching,
   };
 
   return (

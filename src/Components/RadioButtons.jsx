@@ -1,7 +1,6 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import recipesContext from '../Context/MyContext';
-import firstFetch from '../helpers/firstFetch';
 
 function RadioButtons({ history: { location, push }, apiName }) {
   const {
@@ -11,10 +10,11 @@ function RadioButtons({ history: { location, push }, apiName }) {
     setRecipes,
     selectedIngredient,
     setSelectedIngredient,
+    setIsFetching,
   } = useContext(recipesContext);
 
   useEffect(() => {
-    firstFetch(apiName, setRecipes, selectedIngredient);
+    firstFetch(apiName, setRecipes, selectedIngredient, setIsFetching);
     return () => {
       setSelectedIngredient(null);
     };
@@ -47,13 +47,14 @@ function RadioButtons({ history: { location, push }, apiName }) {
       'first-letter': `https://www.${apiName}.com/api/json/v1/1/search.php?f=${searchBarValue}`,
     };
     try {
+      setIsFetching(true);
       const request = await fetch(urlRadio[radioInputSelected]);
       const json = await request.json();
-      console.log(json);
       checkAmountOfRecipes(json);
     } catch (error) {
       global.alert('Sorry, we haven\'t found any recipes for these filters.');
     }
+    setIsFetching(false);
   };
 
   const handleClick = () => {

@@ -1,6 +1,7 @@
 // Fetch utilizado para carregar inicialmente as Receitas nas telas principais (Food e Drink)
-async function firstFetch(apiName, setRecipes, selectedIngredient) {
+async function firstFetch(apiName, setRecipes, selectedIngredient, setIsFetching) {
   try {
+    setIsFetching(true);
     if (selectedIngredient) {
       const URL = `https://www.${apiName}.com/api/json/v1/1/filter.php?i=${selectedIngredient}`;
       const request = await fetch(URL);
@@ -18,6 +19,7 @@ async function firstFetch(apiName, setRecipes, selectedIngredient) {
   } catch (error) {
     global.alert('Sorry, we haven\'t found any recipes for these filters.');
   }
+  setIsFetching(false);
 }
 
 export default firstFetch;

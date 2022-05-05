@@ -1,13 +1,20 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import RecipeInProgress from '../Components/RecipeInProgress';
 
-function ProgressFoodRecipes() {
+function ProgressFoodRecipes({ match: { params: { id } } }) {
+  console.log();
   return (
-    <div>
-      <h1>
-        ProgressFoodRecipes
-      </h1>
-    </div>
+    <RecipeInProgress recipeId={ id } apiName="themealdb" />
   );
 }
 
 export default ProgressFoodRecipes;
+
+ProgressFoodRecipes.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
+};
