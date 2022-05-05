@@ -31,13 +31,8 @@ function App() {
           <Route exact path="/drinks" component={ DrinkRecipes } />
           <Route exact path="/foods/:id" component={ DetailsFoodRecipes } />
           <Route exact path="/drinks/:id" component={ DetailsDrinkRecipes } />
-<<<<<<< HEAD
           <Route exact path="/foods/:id/in-progress" component={ ProgressFoodRecipes } />
           <Route exact path="/drink/:id/in-progress" component={ ProgressDrinkRecipes } />
-=======
-          <Route path="/foods/:id/in-progress" component={ ProgressFoodRecipes } />
-          <Route path="/drinks/:id/in-progress" component={ ProgressDrinkRecipes } />
->>>>>>> main-group-12
           <Route exact path="/explore" component={ Explore } />
           <Route exact path="/explore/foods" component={ ExploreFood } />
           <Route exact path="/explore/drinks" component={ ExploreDrink } />
