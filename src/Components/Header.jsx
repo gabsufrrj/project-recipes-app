@@ -2,6 +2,8 @@ import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import recipesContext from '../Context/MyContext';
+import profileIcon from '../images/profileIcon.svg';
+import searchIcon from '../images/searchIcon.svg';
 
 function Header({ title, renderInput }) {
   const { searchBarValue, setSearchBarValue } = useContext(recipesContext);
@@ -17,7 +19,7 @@ function Header({ title, renderInput }) {
         <input
           type="image"
           data-testid="profile-top-btn"
-          src="../images/profileIcon.svg"
+          src={ profileIcon }
           alt="profile"
         />
       </Link>
@@ -29,7 +31,7 @@ function Header({ title, renderInput }) {
           type="image"
           onClick={ () => setShowInput(!showInput) }
           data-testid="search-top-btn"
-          src="../images/searchIcon.svg"
+          src={ searchIcon }
           alt="search"
         />
       )}
