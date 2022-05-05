@@ -38,7 +38,6 @@ function DrinkDetails({ drinkDetails: { strDrinkThumb, strDrink, strAlcoholic,
       </h2>
       <FavoriteAndShareBtn />
       <p data-testid="recipe-category">{ strAlcoholic }</p>
-      <img data-testid="share-btn" alt="share" />
       <h3>Ingredients</h3>
       <ul>
         {ingredients.map((ingredient, i) => (

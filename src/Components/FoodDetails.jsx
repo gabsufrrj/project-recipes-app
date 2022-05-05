@@ -39,7 +39,6 @@ function FoodDetails({ foodDetails: { strMealThumb, strMeal, strCategory,
       </h2>
       <FavoriteAndShareBtn />
       <p data-testid="recipe-category">{ strCategory }</p>
-      <img data-testid="share-btn" alt="" src="" />
       <h3>Ingredients</h3>
       <ul>
         {ingredients.map((ingredient, i) => (

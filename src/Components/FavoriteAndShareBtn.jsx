@@ -5,9 +5,8 @@ import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 
 function FavoriteAndShareBtn() {
-  /* const whiteHeartIcon = '../images/whiteHeartIcon.svg';
-  const blackHeartIcon = '../images/blackHeartIcon.svg'; */
   const [favoriteIcon, setFavoriteIcon] = useState(whiteHeartIcon);
+  const [showMessage, setShowMessage] = useState(false);
   const { id } = useContext(recipesContext);
   useEffect(() => {
     const checkFavoriteRecipe = () => {
@@ -31,6 +30,12 @@ function FavoriteAndShareBtn() {
     }
   };
 
+  const copyUrl = () => {
+    const url = window.location.href;
+    navigator.clipboard.writeText(url);
+    setShowMessage(true);
+  };
+
   return (
     <div>
       <input
@@ -38,7 +43,9 @@ function FavoriteAndShareBtn() {
         type="image"
         src={ shareIcon }
         alt="share"
+        onClick={ copyUrl }
       />
+      {showMessage && <span>Link copied!</span>}
       <input
         data-testid="favorite-btn"
         type="image"
