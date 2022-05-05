@@ -1,5 +1,5 @@
 .startRecipe {
-    bottom: 0;
-    position: fixed;
-    margin-left: 40%
-  }
+  margin-left: 40%;
+  bottom: 0;
+  position: fixed;
+}
