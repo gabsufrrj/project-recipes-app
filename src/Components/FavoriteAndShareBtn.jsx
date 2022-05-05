@@ -1,9 +1,12 @@
 import React, { useEffect, useState, useContext } from 'react';
 import recipesContext from '../Context/MyContext';
+import shareIcon from '../images/shareIcon.svg';
+import whiteHeartIcon from '../images/whiteHeartIcon.svg';
+import blackHeartIcon from '../images/blackHeartIcon.svg';
 
 function FavoriteAndShareBtn() {
-  const whiteHeartIcon = '../images/whiteHeartIcon.svg';
-  const blackHeartIcon = '../images/blackHeartIcon.svg';
+  /* const whiteHeartIcon = '../images/whiteHeartIcon.svg';
+  const blackHeartIcon = '../images/blackHeartIcon.svg'; */
   const [favoriteIcon, setFavoriteIcon] = useState(whiteHeartIcon);
   const { id } = useContext(recipesContext);
   useEffect(() => {
@@ -30,29 +33,19 @@ function FavoriteAndShareBtn() {
 
   return (
     <div>
-      <button
+      <input
         data-testid="share-btn"
-        type="button"
-        onClick={ favoriteItem }
-        src="../images/shareIcon.svg"
-      >
-        <img
-          alt="share"
-          src="../images/shareIcon.svg"
-        />
-      </button>
-      <button
+        type="image"
+        src={ shareIcon }
+        alt="share"
+      />
+      <input
         data-testid="favorite-btn"
-        type="button"
+        type="image"
         onClick={ favoriteItem }
         src={ favoriteIcon }
         alt="favorite"
-      >
-        <img
-          alt="favorite"
-          src={ favoriteIcon }
-        />
-      </button>
+      />
     </div>
   );
 }
