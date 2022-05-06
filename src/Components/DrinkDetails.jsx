@@ -36,7 +36,7 @@ function DrinkDetails({ drinkDetails: { strDrinkThumb, strDrink, strAlcoholic,
         {' '}
         { strDrink }
       </h2>
-      <FavoriteAndShareBtn />
+      <FavoriteAndShareBtn type="drink" />
       <p data-testid="recipe-category">{ strAlcoholic }</p>
       <h3>Ingredients</h3>
       <ul>

@@ -37,7 +37,7 @@ function FoodDetails({ foodDetails: { strMealThumb, strMeal, strCategory,
         {' '}
         { strMeal }
       </h2>
-      <FavoriteAndShareBtn />
+      <FavoriteAndShareBtn type="food" />
       <p data-testid="recipe-category">{ strCategory }</p>
       <h3>Ingredients</h3>
       <ul>
