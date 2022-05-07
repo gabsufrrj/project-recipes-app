@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import StartRecipe from './StartRecipeButton';
 import FavoriteAndShareBtn from './FavoriteAndShareBtn';
+import '../CSS/RecipeDetails.css';
 
 function DrinkDetails({ drinkDetails: { strDrinkThumb, strDrink, strAlcoholic,
-  strInstructions }, drinkDetails }) {
+  strInstructions }, drinkDetails, recommendation }) {
   const [ingredients, setIngredients] = useState(['loading']);
   const [measure, setMeasure] = useState(['loading']);
   useEffect(() => {
@@ -51,8 +52,18 @@ function DrinkDetails({ drinkDetails: { strDrinkThumb, strDrink, strAlcoholic,
       </ul>
       <h3>Instructions</h3>
       <p data-testid="instructions">{ strInstructions }</p>
-      <div data-testid="0-recomendation-card">
-        <h3>Recommended</h3>
+      <h3>Recommended</h3>
+      <div className="recommendation">
+        {recommendation.map((element, i) => (
+          <div key={ i } data-testid={ `${i}-recomendation-card` }>
+            <img
+              src={ element.strMealThumb }
+              alt={ element.strMeal }
+              className="r-image"
+            />
+            <span data-testid={ `${i}-recomendation-title` }>{element.strMeal}</span>
+          </div>
+        ))}
       </div>
       <StartRecipe type="drinks" />
     </div>
@@ -67,6 +78,7 @@ DrinkDetails.propTypes = {
     strIngredient1: PropTypes.string.isRequired,
     strInstructions: PropTypes.string.isRequired,
   }).isRequired,
+  recommendation: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
 };
 
 export default DrinkDetails;

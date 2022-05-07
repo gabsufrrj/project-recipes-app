@@ -1,0 +1,10 @@
+.recommendation {
+  display: flex;
+  text-align: center;
+  overflow-x: auto;
+}
+
+.r-image {
+  height: 50vw;
+  width: 50vw;
+}
