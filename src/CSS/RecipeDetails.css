@@ -1,7 +1,7 @@
 .recommendation {
   display: flex;
-  text-align: center;
   overflow-x: auto;
+  text-align: center;
 }
 
 .r-image {
