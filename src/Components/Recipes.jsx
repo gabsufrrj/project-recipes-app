@@ -17,7 +17,9 @@ function Recipes({ history: { location } }) {
       {(recipes.length > 0) && (
         recipes.slice(0, number12).map((e, index) => (
           <Link
-            to={ `${location.pathname}/${e[`id${typeOfRecipe()}`]}` }
+            to={ (location.pathname.includes('foods')) ? (
+              `/foods/${e[`id${typeOfRecipe()}`]}`) : (
+              `/drinks/${e[`id${typeOfRecipe()}`]}`) }
             key={ `${index}-recipe-card` }
           >
             <div data-testid={ `${index}-recipe-card` }>
@@ -27,6 +29,7 @@ function Recipes({ history: { location } }) {
                 {e[`str${typeOfRecipe()}`]}
               </h2>
               <img
+                style={ { width: '100px' } }
                 data-testid={ `${index}-card-img` }
                 src={ e[`str${typeOfRecipe()}Thumb`] }
                 alt={ e[`str${typeOfRecipe()}`] }

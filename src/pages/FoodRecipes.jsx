@@ -9,10 +9,19 @@ import recipesContext from '../Context/MyContext';
 import firstFetch from '../helpers/firstFetch';
 
 function FoodRecipes({ history }) {
-  const { isFetching, setIsFetching, setRecipes } = useContext(recipesContext);
+  const {
+    isFetching,
+    setIsFetching,
+    selectedIngredient,
+    setSelectedIngredient,
+    setRecipes,
+  } = useContext(recipesContext);
 
   useEffect(() => {
-    firstFetch('themealdb', setRecipes, setIsFetching);
+    firstFetch('themealdb', setRecipes, selectedIngredient, setIsFetching);
+    return () => {
+      setSelectedIngredient(null);
+    };
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
