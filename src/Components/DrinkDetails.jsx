@@ -11,7 +11,6 @@ function DrinkDetails({ drinkDetails: { strDrinkThumb, strDrink, strAlcoholic,
     const myIngredients = [];
     const myMeasure = [];
     const key = Object.keys(drinkDetails);
-    console.log(key);
     for (let i = 0; i < key.length; i += 1) {
       if (key[i].includes('strIngredient')
           && drinkDetails[key[i]] !== ''
@@ -25,7 +24,6 @@ function DrinkDetails({ drinkDetails: { strDrinkThumb, strDrink, strAlcoholic,
         myMeasure.push(drinkDetails[key[i]]);
       }
     }
-    console.log(myMeasure, myIngredients);
     setIngredients(myIngredients);
     setMeasure(myMeasure);
   }, []);

@@ -1,4 +1,5 @@
 import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Provider from './Context/Provider';
@@ -19,7 +20,6 @@ import ExploreFoodNationalities from './pages/ExploreFoodNationalities';
 import DoneRecipes from './pages/DoneRecipes';
 import FavoriteRecipes from './pages/FavoriteRecipes';
 import NotFound from './pages/NotFound';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (

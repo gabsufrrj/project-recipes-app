@@ -10,6 +10,7 @@ import getDate from '../helpers/getDate';
 function RecipeDetailsInProgress(props) {
   const history = useHistory();
   const {
+    recipeId,
     detailsRecipe,
     progress,
     favoriteRecipes,
@@ -17,10 +18,18 @@ function RecipeDetailsInProgress(props) {
     share,
     favorite,
     saveProgress,
-    getIngredients,
   } = props;
 
   const nameRecipe = detailsRecipe[`str${typeOfRecipe()}`];
+
+  const getIngredients = () => {
+    const datailsRecipeEntries = Object.entries(detailsRecipe);
+    const filterOnlyIgredients = datailsRecipeEntries.filter((e) => (
+      e[0].includes('strIngredient')));
+    let ingredients = filterOnlyIgredients.filter((e) => e[1]);
+    ingredients = ingredients.map((e) => e[1]);
+    return ingredients;
+  };
 
   const putFavoriteImage = () => (
     (favoriteRecipes.some((e) => e.name === nameRecipe)) ? blackHeartIcon : whiteHeartIcon
@@ -72,17 +81,17 @@ function RecipeDetailsInProgress(props) {
       />
       <div>
         {getIngredients().map((e, index) => (
-          <div key={ e }>
+          <div key={ `ingredient-${index}` }>
             <label
               data-testid={ `${index}-ingredient-step` }
-              htmlFor={ e }
+              htmlFor={ `ingredient-${index}` }
             >
               <input
                 type="checkbox"
-                id={ e }
+                id={ `ingredient-${index}` }
                 onChange={ saveProgress }
-                checked={ (progress[nameRecipe]) ? (
-                  progress[nameRecipe].includes(e)) : false }
+                checked={ (progress[recipeId]) ? (
+                  progress[recipeId].includes(`ingredient-${index}`)) : false }
               />
               {e}
             </label>
@@ -95,8 +104,8 @@ function RecipeDetailsInProgress(props) {
           data-testid="finish-recipe-btn"
           type="button"
           onClick={ finishRecipe }
-          disabled={ (progress[nameRecipe]) ? (
-            progress[nameRecipe].length !== getIngredients().length) : true }
+          disabled={ (progress[recipeId]) ? (
+            progress[recipeId].length !== getIngredients().length) : true }
         >
           Finish Recipe
         </button>
@@ -108,6 +117,7 @@ function RecipeDetailsInProgress(props) {
 export default RecipeDetailsInProgress;
 
 RecipeDetailsInProgress.propTypes = {
+  recipeId: PropTypes.string.isRequired,
   detailsRecipe: PropTypes.objectOf(PropTypes.any).isRequired,
   progress: PropTypes.objectOf(PropTypes.any.isRequired).isRequired,
   favoriteRecipes: PropTypes.arrayOf(PropTypes.any.isRequired).isRequired,
@@ -115,5 +125,4 @@ RecipeDetailsInProgress.propTypes = {
   share: PropTypes.func.isRequired,
   favorite: PropTypes.func.isRequired,
   saveProgress: PropTypes.func.isRequired,
-  getIngredients: PropTypes.func.isRequired,
 };

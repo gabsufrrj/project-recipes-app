@@ -4,6 +4,9 @@ import { useHistory } from 'react-router-dom';
 import RecipeDetailsInProgress from './RecipeDetailsInProgress';
 import getFromLocalStorage from '../helpers/getFromLocalStorage';
 import recipesContext from '../Context/MyContext';
+import saveRecipeProgress from '../helpers/saveRecipeProgress';
+import toFavoriteRecipeInProgress from '../helpers/toFavoriteRecipeInProgress';
+import recipeObjectModel from '../helpers/recipeObjectModel';
 
 function RecipeInProgress({ recipeId, apiName }) {
   const { isFetching, setIsFetching } = useContext(recipesContext);
@@ -15,6 +18,16 @@ function RecipeInProgress({ recipeId, apiName }) {
   const typeOfRecipe = () => {
     const { location: { pathname } } = history;
     return (pathname.includes('foods') ? 'Meal' : 'Drink');
+  };
+
+  const keyType = (history.location.pathname.includes('foods') ? 'meals' : 'cocktails');
+
+  const recipesInProgressObject = () => {
+    const inProgressRecipesFromStorage = getFromLocalStorage('inProgressRecipes', {});
+    if (!inProgressRecipesFromStorage[keyType]) {
+      inProgressRecipesFromStorage[keyType] = {};
+    }
+    return inProgressRecipesFromStorage[keyType];
   };
 
   useEffect(() => {
@@ -31,34 +44,14 @@ function RecipeInProgress({ recipeId, apiName }) {
       setIsFetching(false);
     };
     fetchDetailsRecipe();
-    setProgress(getFromLocalStorage('inProgressRecipes', {}));
+    setProgress(recipesInProgressObject());
     setFavoriteRecipes(getFromLocalStorage('favoriteRecipes', []));
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const getIngredients = () => {
-    const ingredients = [];
-    const datailsRecipeKeys = Object.keys(detailsRecipe);
-    const ingredientsKeys = datailsRecipeKeys.filter((e) => e.includes('strIngredient'));
-    ingredientsKeys.forEach((e) => (
-      (detailsRecipe[e]) && ingredients.push(detailsRecipe[e])));
-    return ingredients;
-  };
-
-  const saveProgress = ({ target: { id, checked } }) => {
-    const inProgressRecipes = getFromLocalStorage('inProgressRecipes', {});
-    const nameRecipe = detailsRecipe[`str${typeOfRecipe()}`];
-    if (!inProgressRecipes[nameRecipe]) {
-      inProgressRecipes[nameRecipe] = [];
-    }
-    if (checked) {
-      inProgressRecipes[nameRecipe].push(id);
-    } else {
-      inProgressRecipes[nameRecipe] = (
-        inProgressRecipes[nameRecipe].filter((e) => e !== id));
-    }
-    localStorage.setItem('inProgressRecipes', JSON.stringify(inProgressRecipes));
-    setProgress(inProgressRecipes);
+  const saveProgress = ({ target: { id: nameRecipe, checked } }) => {
+    const props = { recipeId, nameRecipe, checked, keyType, recipesInProgressObject };
+    setProgress(saveRecipeProgress(props));
   };
 
   const share = ({ target }) => {
@@ -70,22 +63,13 @@ function RecipeInProgress({ recipeId, apiName }) {
   };
 
   const favorite = () => {
-    const recipe = {
-      id: detailsRecipe[`id${typeOfRecipe()}`],
-      type: (history.location.pathname.includes('foods')) ? 'food' : 'drink',
-      nationality: (detailsRecipe.strArea) ? detailsRecipe.strArea : '',
-      category: detailsRecipe.strCategory,
-      alcoholicOrNot: (detailsRecipe.strAlcoholic) ? 'Alcoholic' : '',
-      name: detailsRecipe[`str${typeOfRecipe()}`],
-      image: detailsRecipe[`str${typeOfRecipe()}Thumb`],
+    const propsRecipeObjectModel = {
+      detailsRecipe,
+      typeOfRecipe: typeOfRecipe(),
+      history,
     };
-    let getFavoriteRecipes = getFromLocalStorage('favoriteRecipes', []);
-    if (getFavoriteRecipes.some((e) => e.name === recipe.name)) {
-      getFavoriteRecipes = getFavoriteRecipes.filter((e) => e.name !== recipe.name);
-    } else {
-      getFavoriteRecipes.push(recipe);
-    }
-    localStorage.setItem('favoriteRecipes', JSON.stringify(getFavoriteRecipes));
+    const recipe = recipeObjectModel(propsRecipeObjectModel);
+    const getFavoriteRecipes = toFavoriteRecipeInProgress(recipe);
     setFavoriteRecipes(getFavoriteRecipes);
   };
 
@@ -94,6 +78,7 @@ function RecipeInProgress({ recipeId, apiName }) {
       <h2>Recipe in progress</h2>
       {(!isFetching && detailsRecipe) && (
         <RecipeDetailsInProgress
+          recipeId={ recipeId }
           detailsRecipe={ detailsRecipe }
           progress={ progress }
           favoriteRecipes={ favoriteRecipes }
@@ -101,7 +86,6 @@ function RecipeInProgress({ recipeId, apiName }) {
           share={ share }
           favorite={ favorite }
           saveProgress={ saveProgress }
-          getIngredients={ getIngredients }
         />
       )}
       {(isFetching) && <h2>Loading...</h2>}

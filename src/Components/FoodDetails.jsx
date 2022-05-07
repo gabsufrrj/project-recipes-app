@@ -6,14 +6,12 @@ import FavoriteAndShareBtn from './FavoriteAndShareBtn';
 
 function FoodDetails({ foodDetails: { strMealThumb, strMeal, strCategory,
   strInstructions, strYoutube }, foodDetails }) {
-  console.log(foodDetails.strMeal);
   const [ingredients, setIngredients] = useState(['loading']);
   const [measure, setMeasure] = useState(['loading']);
   useEffect(() => {
     const myIngredients = [];
     const myMeasure = [];
     const key = Object.keys(foodDetails);
-    console.log(key);
     for (let i = 0; i < key.length; i += 1) {
       if (key[i].includes('strIngredient')
         && foodDetails[key[i]] !== '') {
@@ -26,7 +24,6 @@ function FoodDetails({ foodDetails: { strMealThumb, strMeal, strCategory,
         myMeasure.push(foodDetails[key[i]]);
       }
     }
-    console.log(myMeasure, myIngredients);
     setIngredients(myIngredients);
     setMeasure(myMeasure);
   }, []);

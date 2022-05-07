@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import recipesContext from '../Context/MyContext';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
+import '../CSS/Header.css';
 
 function Header({ title, renderInput }) {
   const { searchBarValue, setSearchBarValue } = useContext(recipesContext);

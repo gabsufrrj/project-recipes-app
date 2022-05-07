@@ -7,7 +7,6 @@ async function firstFetch(apiName, setRecipes, selectedIngredient, setIsFetching
       const request = await fetch(URL);
       const json = await request.json();
       const valuesJson = Object.values(json);
-      console.log(valuesJson[0]);
       setRecipes(valuesJson[0]);
     } else {
       const url = `https://www.${apiName}.com/api/json/v1/1/search.php?s=`;
