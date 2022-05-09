@@ -16,15 +16,20 @@ function DetailsDrinkRecipes({ match }) {
       const result = await response.json();
       console.log(result);
       setDrinkDetails(result.drinks[0]);
-      setLoading(false);
     };
     const getFoods = async () => {
       const response = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=');
       const result = await response.json();
-      setFoods(result);
+      const numberOfRecommendations = 6;
+      const recommendation = result.meals.slice(0, numberOfRecommendations);
+      setFoods(recommendation);
     };
-    getDrinkDetails();
-    getFoods();
+    const fetchItens = async () => {
+      await getDrinkDetails();
+      await getFoods();
+      setLoading(false);
+    };
+    fetchItens();
   }, []);
 
   return (
