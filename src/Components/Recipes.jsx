@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import recipesContext from '../Context/MyContext';
+import '../CSS/Recipes.css';
 
 function Recipes({ history: { location } }) {
   const { recipes } = useContext(recipesContext);
@@ -13,7 +14,7 @@ function Recipes({ history: { location } }) {
   const number12 = 12;
 
   return (
-    <div>
+    <section className="recipes-section">
       {(recipes.length > 0) && (
         recipes.slice(0, number12).map((e, index) => (
           <Link
@@ -38,7 +39,7 @@ function Recipes({ history: { location } }) {
           </Link>
         ))
       )}
-    </div>
+    </section>
   );
 }
 

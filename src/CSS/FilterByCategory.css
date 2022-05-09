@@ -1,0 +1,10 @@
+.filter-category-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.filter-category-section button {
+  margin: 2px;
+  width: 30%;
+}

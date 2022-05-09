@@ -7,6 +7,9 @@ import recipesContext from '../Context/MyContext';
 import saveRecipeProgress from '../helpers/saveRecipeProgress';
 import toFavoriteRecipeInProgress from '../helpers/toFavoriteRecipeInProgress';
 import recipeObjectModel from '../helpers/recipeObjectModel';
+import '../CSS/RecipeInProgress.css';
+
+let timer;
 
 function RecipeInProgress({ recipeId, apiName }) {
   const { isFetching, setIsFetching } = useContext(recipesContext);
@@ -56,10 +59,15 @@ function RecipeInProgress({ recipeId, apiName }) {
 
   const share = ({ target }) => {
     const number1 = 1;
+    const number5000 = 5000;
     let url = window.location.href.split('/');
     url = url.slice(0, -number1).join('/');
     navigator.clipboard.writeText(url);
-    target.parentElement.querySelector('.link-copied').innerHTML = 'Link copied!';
+    clearTimeout(timer);
+    target.parentElement.querySelector('.link-copied').style.display = 'inline';
+    timer = setTimeout(() => {
+      target.parentElement.querySelector('.link-copied').style.display = 'none';
+    }, number5000);
   };
 
   const favorite = () => {
@@ -75,7 +83,6 @@ function RecipeInProgress({ recipeId, apiName }) {
 
   return (
     <section className="recipe-in-progress-section">
-      <h2>Recipe in progress</h2>
       {(!isFetching && detailsRecipe) && (
         <RecipeDetailsInProgress
           recipeId={ recipeId }

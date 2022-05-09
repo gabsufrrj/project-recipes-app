@@ -28,11 +28,15 @@ function FoodRecipes({ history }) {
   return (
     <div>
       <Header title="Foods" renderInput />
-      <RadioButtons apiName="themealdb" history={ history } />
-      <FilterByCategories apiName="themealdb" />
-      {(!isFetching) ? (
-        <Recipes history={ history } />
-      ) : <h2>Loading...</h2>}
+      <main>
+        <nav>
+          <RadioButtons apiName="themealdb" history={ history } />
+          <FilterByCategories apiName="themealdb" />
+        </nav>
+        {(!isFetching) ? (
+          <Recipes history={ history } />
+        ) : <h2>Loading...</h2>}
+      </main>
       <Footer />
     </div>
   );

@@ -1,0 +1,7 @@
+.radio-btn-nav {
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+  padding: 4px 0;
+}

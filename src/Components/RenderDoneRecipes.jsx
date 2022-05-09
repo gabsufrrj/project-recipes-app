@@ -15,7 +15,7 @@ function RenderDoneRecipes({ filteredDoneRecipes }) {
 
   return (
     <div className="done-recipes">
-      {filteredDoneRecipes.reverse().map((e, index) => (
+      {filteredDoneRecipes.map((e, index) => (
         <div key={ `done-recipe-${index}` }>
           <Link to={ `/${e.type}s/${e.id}` }>
             <img

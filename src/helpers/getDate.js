@@ -1,7 +1,7 @@
-const number9 = 9;
+const number10 = 10;
 
 const formatDayAndMonth = (value) => (
-  (value < number9) ? `0${value}` : value
+  (value < number10) ? `0${value}` : value
 );
 
 function getDate() {

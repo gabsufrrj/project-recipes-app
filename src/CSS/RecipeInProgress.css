@@ -1,0 +1,111 @@
+.recipe-in-progress-section .card {
+  align-items: center;
+  border-radius: 4px;
+  box-shadow: 0 0 4px black;
+  display: flex;
+  margin: 8px;
+  padding: 4px;
+}
+
+.recipe-in-progress-section .card-img-div {
+  align-items: center;
+  display: flex;
+  margin-right: 8px;
+  width: 40%;
+}
+
+.recipe-in-progress-section .card-img-div img {
+  border-radius: 4px;
+  width: 100%;
+}
+
+.recipe-in-progress-section .card-info {
+  flex-grow: 1;
+}
+
+.recipe-in-progress-section .card-info h3 {
+  align-self: flex-start;
+  opacity: 0.4;
+}
+
+.recipe-in-progress-section .card-info h2 {
+  align-self: center;
+}
+
+.recipe-in-progress-section .favorite-share-div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.recipe-in-progress-section .favorite-share-div img {
+  cursor: pointer;
+  margin: 4px;
+}
+
+.recipe-in-progress-section .favorite-share-div span {
+  background-color: white;
+  box-shadow: 0 0 4px black;
+  display: none;
+  padding: 4px 16px;
+  position: fixed;
+  right: 0;
+  text-align: center;
+  top: 0;
+  z-index: 1;
+}
+
+.recipe-in-progress-section .ingredients-div {
+  border-radius: 4px;
+  box-shadow: 0 0 4px black;
+  margin: 8px;
+  padding: 8px 16px;
+}
+
+.recipe-in-progress-section .ingredients-div h3 {
+  text-align: center;
+}
+
+.recipe-in-progress-section .ingredients-div div {
+  margin: 4px 0;
+}
+
+.recipe-in-progress-section .ingredients-div input {
+  margin-right: 8px;
+}
+
+.recipe-in-progress-section .instructions-div {
+  border-radius: 4px;
+  box-shadow: 0 0 4px black;
+  margin: 8px;
+  padding: 8px 16px;
+}
+
+.recipe-in-progress-section .instructions-div h3 {
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.recipe-in-progress-section .instructions-div p {
+  text-align: justify;
+}
+
+.recipe-in-progress-section .finish-btn-div {
+  margin: 8px 0;
+  padding: 0 8px;
+}
+
+.recipe-in-progress-section .finish-btn-div button {
+  border: none;
+  border-radius: 2px;
+  box-shadow: 0 0 4px black;
+  padding: 8px 0;
+  width: 100%;
+}
+
+.recipe-in-progress-section .finish-btn-div button:enabled {
+  background-color: rgb(70, 180, 127);
+  border: none;
+  cursor: pointer;
+}
+

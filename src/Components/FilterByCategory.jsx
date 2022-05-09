@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import recipesContext from '../Context/MyContext';
 import firstFetch from '../helpers/firstFetch';
+import '../CSS/FilterByCategory.css';
 
 function FilterByCategories({ apiName }) {
   const { setRecipes, setIsFetching, isFetching } = useContext(recipesContext);
@@ -50,7 +51,7 @@ function FilterByCategories({ apiName }) {
   }, []);
 
   return (
-    <div>
+    <section className="filter-category-section">
       {(categories.length > 0) && (
         <>
           {categories.map((e) => (
@@ -74,7 +75,7 @@ function FilterByCategories({ apiName }) {
           </button>
         </>
       )}
-    </div>
+    </section>
   );
 }
 

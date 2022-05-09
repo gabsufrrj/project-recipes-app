@@ -31,6 +31,15 @@ function RecipeDetailsInProgress(props) {
     return ingredients;
   };
 
+  const getMeasures = () => {
+    const datailsRecipeEntries = Object.entries(detailsRecipe);
+    const filterOnlyMeasures = datailsRecipeEntries.filter((e) => (
+      e[0].includes('strMeasure')));
+    let measures = filterOnlyMeasures.filter((e) => e[1]);
+    measures = measures.map((e) => e[1]);
+    return measures;
+  };
+
   const putFavoriteImage = () => (
     (favoriteRecipes.some((e) => e.name === nameRecipe)) ? blackHeartIcon : whiteHeartIcon
   );
@@ -55,31 +64,38 @@ function RecipeDetailsInProgress(props) {
 
   return (
     <>
-      <h2 data-testid="recipe-title">{nameRecipe}</h2>
-      <h3 data-testid="recipe-category">{detailsRecipe.strCategory}</h3>
-      <img
-        data-testid="recipe-photo"
-        src={ detailsRecipe[`str${typeOfRecipe()}Thumb`] }
-        alt={ nameRecipe }
-      />
-      <div>
-        <img
-          data-testid="share-btn"
-          src={ shareIcon }
-          alt="Share"
-          onClick={ share }
-          aria-hidden="true"
-        />
-        <span className="link-copied">{`${''}`}</span>
+      <div className="card">
+        <div className="card-img-div">
+          <img
+            data-testid="recipe-photo"
+            src={ detailsRecipe[`str${typeOfRecipe()}Thumb`] }
+            alt={ nameRecipe }
+          />
+        </div>
+        <div className="card-info">
+          <h3 data-testid="recipe-category">{detailsRecipe.strCategory}</h3>
+          <h2 data-testid="recipe-title">{nameRecipe}</h2>
+          <div className="favorite-share-div">
+            <img
+              data-testid="favorite-btn"
+              src={ putFavoriteImage() }
+              alt="Favorite_Image"
+              onClick={ favorite }
+              aria-hidden="true"
+            />
+            <img
+              data-testid="share-btn"
+              src={ shareIcon }
+              alt="Share"
+              onClick={ share }
+              aria-hidden="true"
+            />
+            <span className="link-copied">Link copied!</span>
+          </div>
+        </div>
       </div>
-      <img
-        data-testid="favorite-btn"
-        src={ putFavoriteImage() }
-        alt="Favorite_Image"
-        onClick={ favorite }
-        aria-hidden="true"
-      />
-      <div>
+      <div className="ingredients-div">
+        <h3>Ingredients</h3>
         {getIngredients().map((e, index) => (
           <div key={ `ingredient-${index}` }>
             <label
@@ -94,22 +110,28 @@ function RecipeDetailsInProgress(props) {
                   progress[recipeId].includes(`ingredient-${index}`)) : false }
               />
               {e}
+              {` - ${getMeasures()[index]}`}
             </label>
           </div>
         ))}
       </div>
-      <p data-testid="instructions">{detailsRecipe.strInstructions}</p>
-      <Link to="/done-recipes">
-        <button
-          data-testid="finish-recipe-btn"
-          type="button"
-          onClick={ finishRecipe }
-          disabled={ (progress[recipeId]) ? (
-            progress[recipeId].length !== getIngredients().length) : true }
-        >
-          Finish Recipe
-        </button>
-      </Link>
+      <div className="instructions-div">
+        <h3>Instructions</h3>
+        <p data-testid="instructions">{detailsRecipe.strInstructions}</p>
+      </div>
+      <div className="finish-btn-div">
+        <Link to="/done-recipes">
+          <button
+            data-testid="finish-recipe-btn"
+            type="button"
+            onClick={ finishRecipe }
+            disabled={ (progress[recipeId]) ? (
+              progress[recipeId].length !== getIngredients().length) : true }
+          >
+            Finish Recipe
+          </button>
+        </Link>
+      </div>
     </>
   );
 }
