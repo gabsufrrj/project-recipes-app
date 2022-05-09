@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import StartRecipe from './StartRecipeButton';
 import FavoriteAndShareBtn from './FavoriteAndShareBtn';
-// import shareIcon from '../images/shareIcon.svg';
+import '../CSS/RecipeDetails.css';
 
 function FoodDetails({ foodDetails: { strMealThumb, strMeal, strCategory,
-  strInstructions, strYoutube }, foodDetails }) {
+  strInstructions, strYoutube }, foodDetails, recommendation }) {
   const [ingredients, setIngredients] = useState(['loading']);
   const [measure, setMeasure] = useState(['loading']);
   useEffect(() => {
@@ -34,9 +34,8 @@ function FoodDetails({ foodDetails: { strMealThumb, strMeal, strCategory,
         {' '}
         { strMeal }
       </h2>
-      <FavoriteAndShareBtn />
+      <FavoriteAndShareBtn type="food" />
       <p data-testid="recipe-category">{ strCategory }</p>
-      <img data-testid="share-btn" alt="" src="" />
       <h3>Ingredients</h3>
       <ul>
         {ingredients.map((ingredient, i) => (
@@ -55,11 +54,22 @@ function FoodDetails({ foodDetails: { strMealThumb, strMeal, strCategory,
         <source src={ strYoutube } />
         <track kind="captions" srcLang="pt" />
       </video>
-      <div data-testid="0-recomendation-card">
-        <h3>Recommended</h3>
+      <h3>Recommended</h3>
+      <div className="recommendation">
+        {recommendation.map((element, i) => (
+          <div key={ i } data-testid={ `${i}-recomendation-card` }>
+            <img
+              src={ element.strDrinkThumb }
+              alt={ element.strDrink }
+              className="r-image"
+            />
+            <span data-testid={ `${i}-recomendation-title` }>{element.strDrink}</span>
+          </div>
+        ))}
       </div>
       <StartRecipe type="foods" />
     </div>
+    /* </div> */
   );
 }
 
@@ -72,6 +82,7 @@ FoodDetails.propTypes = {
     strInstructions: PropTypes.string.isRequired,
     strYoutube: PropTypes.string.isRequired,
   }).isRequired,
+  recommendation: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
 };
 
 export default FoodDetails;
