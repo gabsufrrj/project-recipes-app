@@ -1,3 +1,76 @@
-.favorite-recipes-section .favorite-recipes .favorite-recipe-image {
-  width: 200px;
+.favorite-recipes-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.favorite-recipes-section .favorite-recipe-card {
+  align-items: center;
+  background-color: #f3d7db;
+  border-radius: 4px;
+  box-shadow: 0 0 4px black;
+  display: flex;
+  margin: 8px;
+  padding: 8px;
+}
+
+.favorite-recipes-section .favorite-recipe-card a {
+  text-decoration: none;
+}
+
+.favorite-recipes-section .favorite-recipe-card .favorite-recipe-link {
+  align-items: center;
+  display: flex;
+  width: 40%;
+}
+
+.favorite-recipes-section .favorite-recipe-card .favorite-recipe-image {
+  border-radius: 4px;
+  width: 100%;
+}
+
+.favorite-recipes-section .favorite-recipe-card .favorite-recipe-info {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-between;
+  padding-left: 8px;
+}
+
+.favorite-recipe-card .favorite-recipe-info h3 {
+  color: rgb(130, 130, 130);
+  font-size: 16px;
+}
+
+
+.favorite-recipe-card .favorite-recipe-info h2 {
+  color: #272343;
+  font-size: 20px;
+}
+
+.favorite-recipe-card .favorite-recipe-info .favorite-share-div {
+  display: flex;
+  justify-content: center;
+}
+
+
+.favorite-recipe-card .favorite-recipe-info .favorite-share-div div {
+  margin: 8px;
+}
+
+.favorite-recipe-card .favorite-recipe-info .favorite-share-div img {
+  cursor: pointer;
+}
+
+.favorite-recipe-card .favorite-recipe-info .favorite-share-div .link-copied {
+  background-color: white;
+  box-shadow: 0 0 4px black;
+  display: none;
+  padding: 4px 16px;
+  position: fixed;
+  right: 0;
+  text-align: center;
+  top: 0;
+  z-index: 1;
 }

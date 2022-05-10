@@ -58,47 +58,51 @@ function RadioButtons({ history: { location, push }, apiName }) {
 
   return (
     <nav className="radio-btn-nav">
-      <label htmlFor="ingredients">
-        <input
-          data-testid="ingredient-search-radio"
-          type="radio"
-          id="ingredients"
-          name="search-bar"
-          value={ radioInputSelected }
-          onChange={ handleChange }
-        />
-        Ingredients
-      </label>
-      <label htmlFor="name">
-        <input
-          data-testid="name-search-radio"
-          type="radio"
-          id="name"
-          name="search-bar"
-          value={ radioInputSelected }
-          onChange={ handleChange }
-        />
-        Name
-      </label>
-      <label htmlFor="first-letter">
-        <input
-          data-testid="first-letter-search-radio"
-          type="radio"
-          id="first-letter"
-          name="search-bar"
-          value={ radioInputSelected }
-          onChange={ handleChange }
-        />
-        First Letter
-      </label>
-      <br />
-      <button
-        data-testid="exec-search-btn"
-        onClick={ handleClick }
-        type="button"
-      >
-        Search
-      </button>
+      <div className="radio-btn-div">
+        <label htmlFor="ingredients">
+          <input
+            data-testid="ingredient-search-radio"
+            type="radio"
+            id="ingredients"
+            name="search-bar"
+            value={ radioInputSelected }
+            onChange={ handleChange }
+          />
+          Ingredients
+        </label>
+        <label htmlFor="name">
+          <input
+            data-testid="name-search-radio"
+            type="radio"
+            id="name"
+            name="search-bar"
+            value={ radioInputSelected }
+            onChange={ handleChange }
+          />
+          Name
+        </label>
+        <label htmlFor="first-letter">
+          <input
+            data-testid="first-letter-search-radio"
+            type="radio"
+            id="first-letter"
+            name="search-bar"
+            value={ radioInputSelected }
+            onChange={ handleChange }
+          />
+          First Letter
+        </label>
+      </div>
+      <div className="search-btn-div">
+        <button
+          data-testid="exec-search-btn"
+          onClick={ handleClick }
+          type="button"
+        >
+          Search
+        </button>
+
+      </div>
     </nav>
 
   );

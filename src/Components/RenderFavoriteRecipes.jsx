@@ -5,16 +5,25 @@ import shareImage from '../images/shareIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import getFromLocalStorage from '../helpers/getFromLocalStorage';
 
+let timer;
+
 function RenderFavoriteRecipes(props) {
   const { filteredFavoriteRecipes, filter, setFilteredFavoriteRecipes } = props;
 
   const share = (target, recipe) => {
     const number1 = 1;
+    const number3000 = 3000;
+    const linkCopiedClass = '.link-copied';
     const url = window.location.href.split('/').slice(0, -number1).join('/');
     navigator.clipboard.writeText(`${url}/${recipe.type}s/${recipe.id}`);
-    document.querySelectorAll('.link-copied').forEach((e) => { e.innerHTML = ''; });
-    console.log();
-    target.parentElement.querySelector('.link-copied').innerHTML = 'Link copied!';
+    clearTimeout(timer);
+    document.querySelectorAll(linkCopiedClass).forEach((e) => {
+      e.style.display = 'none';
+    });
+    target.parentElement.querySelector(linkCopiedClass).style.display = 'inline';
+    setTimeout(() => {
+      target.parentElement.querySelector(linkCopiedClass).style.display = 'none';
+    }, number3000);
   };
 
   const dislike = (receita) => {
@@ -26,10 +35,10 @@ function RenderFavoriteRecipes(props) {
   };
 
   return (
-    <div className="favorite-recipes">
+    <section className="favorite-recipes-section">
       {filteredFavoriteRecipes.map((e, index) => (
-        <div key={ e.name }>
-          <Link to={ `/${e.type}s/${e.id}` }>
+        <div key={ e.name } className="favorite-recipe-card">
+          <Link to={ `/${e.type}s/${e.id}` } className="favorite-recipe-link">
             <img
               data-testid={ `${index}-horizontal-image` }
               src={ e.image }
@@ -37,33 +46,41 @@ function RenderFavoriteRecipes(props) {
               className="favorite-recipe-image"
             />
           </Link>
-          <h3 data-testid={ `${index}-horizontal-top-text` }>
-            {(e.type === 'food') ? (
-              `${e.nationality} - ${e.category}`) : `${e.alcoholicOrNot}`}
-          </h3>
-          <Link to={ `/${e.type}s/${e.id}` }>
-            <h2 data-testid={ `${index}-horizontal-name` }>{e.name}</h2>
-          </Link>
-          <div>
-            <img
-              data-testid={ `${index}-horizontal-share-btn` }
-              src={ shareImage }
-              alt="Share"
-              onClick={ ({ target }) => share(target, e) }
-              aria-hidden="true"
-            />
-            <span className="link-copied">{`${''}`}</span>
+          <div className="favorite-recipe-info">
+            <div>
+              <h3 data-testid={ `${index}-horizontal-top-text` }>
+                {(e.type === 'food') ? (
+                  `${e.nationality} - ${e.category}`) : `${e.alcoholicOrNot}`}
+              </h3>
+              <Link to={ `/${e.type}s/${e.id}` }>
+                <h2 data-testid={ `${index}-horizontal-name` }>{e.name}</h2>
+              </Link>
+            </div>
+            <div className="favorite-share-div">
+              <div>
+                <img
+                  data-testid={ `${index}-horizontal-favorite-btn` }
+                  src={ blackHeartIcon }
+                  alt="Favorite_Image"
+                  onClick={ () => dislike(e) }
+                  aria-hidden="true"
+                />
+              </div>
+              <div className="share-div">
+                <img
+                  data-testid={ `${index}-horizontal-share-btn` }
+                  src={ shareImage }
+                  alt="Share"
+                  onClick={ ({ target }) => share(target, e) }
+                  aria-hidden="true"
+                />
+                <span className="link-copied">Link copied!</span>
+              </div>
+            </div>
           </div>
-          <img
-            data-testid={ `${index}-horizontal-favorite-btn` }
-            src={ blackHeartIcon }
-            alt="Favorite_Image"
-            onClick={ () => dislike(e) }
-            aria-hidden="true"
-          />
         </div>
       ))}
-    </div>
+    </section>
   );
 }
 

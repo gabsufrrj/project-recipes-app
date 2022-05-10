@@ -30,7 +30,6 @@ function Recipes({ history: { location } }) {
                 {e[`str${typeOfRecipe()}`]}
               </h2>
               <img
-                style={ { width: '100px' } }
                 data-testid={ `${index}-card-img` }
                 src={ e[`str${typeOfRecipe()}Thumb`] }
                 alt={ e[`str${typeOfRecipe()}`] }

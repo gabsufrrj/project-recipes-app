@@ -73,8 +73,10 @@ function RecipeDetailsInProgress(props) {
           />
         </div>
         <div className="card-info">
-          <h3 data-testid="recipe-category">{detailsRecipe.strCategory}</h3>
-          <h2 data-testid="recipe-title">{nameRecipe}</h2>
+          <div>
+            <h3 data-testid="recipe-category">{detailsRecipe.strCategory}</h3>
+            <h2 data-testid="recipe-title">{nameRecipe}</h2>
+          </div>
           <div className="favorite-share-div">
             <img
               data-testid="favorite-btn"

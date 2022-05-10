@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import '../CSS/Login.css';
 
 function Login() {
   const [isDisabled, setIsDisabled] = useState(true);
@@ -36,33 +37,40 @@ function Login() {
   };
 
   return (
-    <form>
-      <h1>Login</h1>
-      <input
-        type="email"
-        placeholder="Email"
-        onChange={ onInputChange }
-        value={ emailInput }
-        id="email"
-        data-testid="email-input"
-      />
-      <input
-        type="password"
-        placeholder="Senha"
-        onChange={ onInputChange }
-        value={ passInput }
-        data-testid="password-input"
-      />
-      <Link to="/foods">
-        <input
-          type="submit"
-          onClick={ saveOnStorage }
-          disabled={ isDisabled }
-          value="Login"
-          data-testid="login-submit-btn"
-        />
-      </Link>
-    </form>
+    <section className="login-section">
+      <div className="background-div">
+        <span style={ { display: 'none' } }>BACKGROUND</span>
+      </div>
+      <div className="form-div">
+        <form>
+          <h1>Login</h1>
+          <input
+            type="email"
+            placeholder="Email"
+            onChange={ onInputChange }
+            value={ emailInput }
+            id="email"
+            data-testid="email-input"
+          />
+          <input
+            type="password"
+            placeholder="Senha"
+            onChange={ onInputChange }
+            value={ passInput }
+            data-testid="password-input"
+          />
+          <Link to="/foods">
+            <input
+              type="submit"
+              onClick={ saveOnStorage }
+              disabled={ isDisabled }
+              value="Login"
+              data-testid="login-submit-btn"
+            />
+          </Link>
+        </form>
+      </div>
+    </section>
   );
 }
 

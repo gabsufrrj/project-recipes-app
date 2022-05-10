@@ -1,7 +1,27 @@
 .radio-btn-nav {
   background-color: white;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  margin: 10px 0;
   padding: 4px 0;
+}
+
+.radio-btn-nav .radio-btn-div {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 8px;
+}
+
+.radio-btn-nav .radio-btn-div label {
+  cursor: pointer;
+}
+
+.radio-btn-nav .search-btn-div {
+  text-align: center;
+}
+
+.radio-btn-nav .search-btn-div button {
+  cursor: pointer;
+  font-size: 16px;
+  padding: 2px 12px;
 }

@@ -1,5 +1,5 @@
 .recipe-in-progress-section .card {
-  align-items: center;
+  background-color: #f3d7db;
   border-radius: 4px;
   box-shadow: 0 0 4px black;
   display: flex;
@@ -20,12 +20,15 @@
 }
 
 .recipe-in-progress-section .card-info {
+  display: flex;
+  flex-direction: column;
   flex-grow: 1;
+  justify-content: space-between;
 }
 
 .recipe-in-progress-section .card-info h3 {
   align-self: flex-start;
-  opacity: 0.4;
+  color: rgb(130, 130, 130);
 }
 
 .recipe-in-progress-section .card-info h2 {
@@ -56,6 +59,7 @@
 }
 
 .recipe-in-progress-section .ingredients-div {
+  background-color: #f3d7db;
   border-radius: 4px;
   box-shadow: 0 0 4px black;
   margin: 8px;
@@ -75,6 +79,7 @@
 }
 
 .recipe-in-progress-section .instructions-div {
+  background-color: #f3d7db;
   border-radius: 4px;
   box-shadow: 0 0 4px black;
   margin: 8px;

@@ -1,0 +1,71 @@
+.login-section {
+  align-items: center;
+  background-color: white;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  position: relative;
+  width: 100vw;
+}
+
+.background-div {
+  background-image: url('../images/foods-background.png');
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  opacity: 0.8;
+  position: absolute;
+  width: 100vw;
+  z-index: 1;
+}
+
+.form-div {
+  align-items: center;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  position: absolute;
+  width: 100vw;
+  z-index: 2;
+}
+
+.form-div form {
+  align-items: center;
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 0 0 4px black;
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+  width: 55%;
+}
+
+.form-div form input {
+  margin: 4px 0;
+  padding: 4px;
+  width: 100%;
+}
+
+.form-div form a {
+  width: 100%;
+}
+
+.form-div a input {
+  background-color: #c8cdd1;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  display: inline-block;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  padding: 0.375rem 0.75rem;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.form-div a input:enabled {
+  background-color: #17a2b8;
+}

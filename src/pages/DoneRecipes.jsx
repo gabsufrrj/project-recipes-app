@@ -24,10 +24,8 @@ function DoneRecipes() {
   return (
     <div>
       <Header title="Done Recipes" renderInput={ false } />
-      <section className="done-recipes-section">
-        <DoneAndFavoriteRecipesFilterButtons setFilter={ setFilter } />
-        <RenderDoneRecipes filteredDoneRecipes={ filteredDoneRecipes } />
-      </section>
+      <DoneAndFavoriteRecipesFilterButtons filter={ filter } setFilter={ setFilter } />
+      <RenderDoneRecipes filteredDoneRecipes={ filteredDoneRecipes } />
     </div>
   );
 }
