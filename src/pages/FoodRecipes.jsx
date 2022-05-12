@@ -7,6 +7,7 @@ import FilterByCategories from '../Components/FilterByCategory';
 import Recipes from '../Components/Recipes';
 import recipesContext from '../Context/MyContext';
 import firstFetch from '../helpers/firstFetch';
+import Loading from '../Components/Loading';
 
 function FoodRecipes({ history }) {
   const {
@@ -35,7 +36,7 @@ function FoodRecipes({ history }) {
         </nav>
         {(!isFetching) ? (
           <Recipes history={ history } />
-        ) : <h2>Loading...</h2>}
+        ) : <Loading />}
       </main>
       <Footer />
     </div>

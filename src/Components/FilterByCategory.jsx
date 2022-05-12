@@ -7,7 +7,7 @@ import '../CSS/FilterByCategory.css';
 function FilterByCategories({ apiName }) {
   const { setRecipes, setIsFetching, isFetching } = useContext(recipesContext);
   const [categories, setCategories] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('All');
 
   const fetchRecipesByCategory = async (category) => {
     const url = `https://www.${apiName}.com/api/json/v1/1/filter.php?c=${category}`;
@@ -24,7 +24,7 @@ function FilterByCategories({ apiName }) {
 
   const handleClick = (category) => {
     if (category === selectedCategory || category === 'All') {
-      setSelectedCategory('');
+      setSelectedCategory('All');
       firstFetch(apiName, setRecipes, null, setIsFetching);
     } else {
       setSelectedCategory(category);
@@ -54,25 +54,27 @@ function FilterByCategories({ apiName }) {
     <section className="filter-category-section">
       {(categories.length > 0) && (
         <>
+          <button
+            type="button"
+            data-testid="All-category-filter"
+            className={ (selectedCategory === 'All') ? 'selected' : null }
+            onClick={ () => handleClick('All') }
+            disabled={ isFetching }
+          >
+            All
+          </button>
           {categories.map((e) => (
             <button
               type="button"
               key={ e }
               data-testid={ `${e}-category-filter` }
+              className={ (selectedCategory === e) ? 'selected' : null }
               value={ e }
               onClick={ () => handleClick(e) }
               disabled={ isFetching }
             >
               { e }
             </button>))}
-          <button
-            type="button"
-            data-testid="All-category-filter"
-            onClick={ () => handleClick('All') }
-            disabled={ isFetching }
-          >
-            All
-          </button>
         </>
       )}
     </section>

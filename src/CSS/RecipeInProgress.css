@@ -1,10 +1,26 @@
+.recipe-in-progress-section {
+  position: relative;
+}
+
+.recipe-in-progress-section .background {
+  background-image: url('../images/foods-background.png');
+  background-position: center;
+  background-size: cover;
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: -1;
+}
+
 .recipe-in-progress-section .card {
-  background-color: #f3d7db;
+  background-color: rgb(255, 255, 255, 0.9);
   border-radius: 4px;
   box-shadow: 0 0 4px black;
   display: flex;
   margin: 8px;
-  padding: 4px;
+  overflow: hidden;
 }
 
 .recipe-in-progress-section .card-img-div {
@@ -15,7 +31,7 @@
 }
 
 .recipe-in-progress-section .card-img-div img {
-  border-radius: 4px;
+  box-shadow: 0 2px 8px black;
   width: 100%;
 }
 
@@ -24,6 +40,7 @@
   flex-direction: column;
   flex-grow: 1;
   justify-content: space-between;
+  padding: 4px;
 }
 
 .recipe-in-progress-section .card-info h3 {
@@ -38,19 +55,20 @@
 .recipe-in-progress-section .favorite-share-div {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-end;
+  justify-content: center;
 }
 
 .recipe-in-progress-section .favorite-share-div img {
   cursor: pointer;
-  margin: 4px;
+  margin: 4px 8px;
 }
 
 .recipe-in-progress-section .favorite-share-div span {
   background-color: white;
   box-shadow: 0 0 4px black;
   display: none;
-  padding: 4px 16px;
+  left: 0;
+  padding: 8px;
   position: fixed;
   right: 0;
   text-align: center;
@@ -59,7 +77,7 @@
 }
 
 .recipe-in-progress-section .ingredients-div {
-  background-color: #f3d7db;
+  background-color: rgb(255, 255, 255, 0.9);
   border-radius: 4px;
   box-shadow: 0 0 4px black;
   margin: 8px;
@@ -79,7 +97,7 @@
 }
 
 .recipe-in-progress-section .instructions-div {
-  background-color: #f3d7db;
+  background-color: rgb(255, 255, 255, 0.9);
   border-radius: 4px;
   box-shadow: 0 0 4px black;
   margin: 8px;
@@ -96,21 +114,24 @@
 }
 
 .recipe-in-progress-section .finish-btn-div {
-  margin: 8px 0;
+  margin: 18px 0;
   padding: 0 8px;
 }
 
 .recipe-in-progress-section .finish-btn-div button {
+  background-color: rgb(205, 205, 205);
   border: none;
   border-radius: 2px;
   box-shadow: 0 0 4px black;
-  padding: 8px 0;
+  font-size: 18px;
+  padding: 16px 0;
   width: 100%;
 }
 
 .recipe-in-progress-section .finish-btn-div button:enabled {
-  background-color: rgb(70, 180, 127);
+  background-color: rgb(245, 66, 63);
   border: none;
+  color: white;
   cursor: pointer;
 }
 

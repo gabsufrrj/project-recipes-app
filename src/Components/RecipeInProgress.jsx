@@ -8,6 +8,7 @@ import saveRecipeProgress from '../helpers/saveRecipeProgress';
 import toFavoriteRecipeInProgress from '../helpers/toFavoriteRecipeInProgress';
 import recipeObjectModel from '../helpers/recipeObjectModel';
 import '../CSS/RecipeInProgress.css';
+import Loading from './Loading';
 
 let timer;
 
@@ -83,19 +84,24 @@ function RecipeInProgress({ recipeId, apiName }) {
 
   return (
     <section className="recipe-in-progress-section">
-      {(!isFetching && detailsRecipe) && (
-        <RecipeDetailsInProgress
-          recipeId={ recipeId }
-          detailsRecipe={ detailsRecipe }
-          progress={ progress }
-          favoriteRecipes={ favoriteRecipes }
-          typeOfRecipe={ typeOfRecipe }
-          share={ share }
-          favorite={ favorite }
-          saveProgress={ saveProgress }
-        />
-      )}
-      {(isFetching) && <h2>Loading...</h2>}
+      <div className="background">
+        <span style={ { display: 'none' } }>BACKGROUND</span>
+      </div>
+      <div className="recipe-in-progress-div">
+        {(!isFetching && detailsRecipe) && (
+          <RecipeDetailsInProgress
+            recipeId={ recipeId }
+            detailsRecipe={ detailsRecipe }
+            progress={ progress }
+            favoriteRecipes={ favoriteRecipes }
+            typeOfRecipe={ typeOfRecipe }
+            share={ share }
+            favorite={ favorite }
+            saveProgress={ saveProgress }
+          />
+        )}
+        {(isFetching) && <Loading />}
+      </div>
     </section>
   );
 }

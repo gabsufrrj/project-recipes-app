@@ -25,12 +25,17 @@ function FavoriteRecipes() {
   return (
     <div>
       <Header title="Favorite Recipes" renderInput={ false } />
-      <DoneAndFavoriteRecipesFilterButtons filter={ filter } setFilter={ setFilter } />
-      <RenderFavoriteRecipes
-        filteredFavoriteRecipes={ filteredFavoriteRecipes }
-        filter={ filter }
-        setFilteredFavoriteRecipes={ setFilteredFavoriteRecipes }
-      />
+      <section className="favorite-recipes-content">
+        <div className="favorite-recipes-background">
+          <span style={ { display: 'none' } }>BACKGROUND</span>
+        </div>
+        <DoneAndFavoriteRecipesFilterButtons filter={ filter } setFilter={ setFilter } />
+        <RenderFavoriteRecipes
+          filteredFavoriteRecipes={ filteredFavoriteRecipes }
+          filter={ filter }
+          setFilteredFavoriteRecipes={ setFilteredFavoriteRecipes }
+        />
+      </section>
     </div>
   );
 }

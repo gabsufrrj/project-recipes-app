@@ -1,0 +1,17 @@
+.loading {
+  align-items: center;
+  background-color: white;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+}
+
+.loading img {
+  border-radius: 50%;
+  box-shadow: 0 0 8px black;
+  width: 60%;
+}

@@ -7,6 +7,7 @@ import FilterByCategories from '../Components/FilterByCategory';
 import Recipes from '../Components/Recipes';
 import firstFetch from '../helpers/firstFetch';
 import recipesContext from '../Context/MyContext';
+import Loading from '../Components/Loading';
 
 function DrinkRecipes({ history }) {
   const {
@@ -32,7 +33,7 @@ function DrinkRecipes({ history }) {
       <FilterByCategories apiName="thecocktaildb" />
       {(!isFetching) ? (
         <Recipes history={ history } />
-      ) : <h2>Loading...</h2>}
+      ) : <Loading />}
       <Footer />
     </div>
   );

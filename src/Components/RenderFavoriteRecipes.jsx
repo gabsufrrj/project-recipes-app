@@ -21,7 +21,7 @@ function RenderFavoriteRecipes(props) {
       e.style.display = 'none';
     });
     target.parentElement.querySelector(linkCopiedClass).style.display = 'inline';
-    setTimeout(() => {
+    timer = setTimeout(() => {
       target.parentElement.querySelector(linkCopiedClass).style.display = 'none';
     }, number3000);
   };
@@ -80,6 +80,8 @@ function RenderFavoriteRecipes(props) {
           </div>
         </div>
       ))}
+      {(!filteredFavoriteRecipes.length) && (
+        <h2 className="favorite-recipes-not-found">Favorite Recipes not found!</h2>)}
     </section>
   );
 }

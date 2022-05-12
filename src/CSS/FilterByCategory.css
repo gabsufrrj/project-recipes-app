@@ -10,7 +10,13 @@
   border: 1px solid rgb(245, 35, 35);
   border-radius: 2px;
   color: rgb(245, 35, 35);
+  cursor: pointer;
   height: 40px;
   margin: 2px;
   width: 30%;
+}
+
+.filter-category-section .selected {
+  background-color: rgb(245, 35, 35);
+  color: white;
 }
