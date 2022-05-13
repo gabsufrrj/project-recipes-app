@@ -70,7 +70,8 @@ function RenderDoneRecipes({ filteredDoneRecipes }) {
           </div>
         </div>
       ))}
-      {(!filteredDoneRecipes.length) && <h2>Done Recipes not found!</h2>}
+      {(!filteredDoneRecipes.length) && (
+        <h2 className="done-recipes-not-found">Done Recipes not found!</h2>)}
     </section>
   );
 }

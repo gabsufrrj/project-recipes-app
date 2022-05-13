@@ -23,6 +23,8 @@
 }
 
 .favorite-recipes-section .favorite-recipes-not-found {
+  font-family: Fredoka One , cursive;
+  font-weight: 100;
   margin-top: 30px;
   text-align: center;
 }
@@ -56,21 +58,24 @@
   align-self: stretch;
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
   justify-content: space-between;
   padding: 8px;
   position: relative;
+  width: 60%;
 }
 
 .favorite-recipe-card .favorite-recipe-info h3 {
   color: rgb(130, 130, 130);
-  font-size: 16px;
+  font-family: Josefin Sans , sans-serif;
+  font-size: 18px;
 }
 
 
 .favorite-recipe-card .favorite-recipe-info h2 {
-  color: #272343;
+  color: black;
+  font-family: Fredoka One , cursive;
   font-size: 20px;
+  font-weight: 100;
 }
 
 .favorite-recipe-card .favorite-recipe-info .favorite-share-div {

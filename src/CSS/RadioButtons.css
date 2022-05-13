@@ -14,7 +14,13 @@
 
 .radio-btn-nav .radio-btn-div label {
   cursor: pointer;
+  font-family: ABeeZee , sans-serif;
 }
+
+.radio-btn-nav .radio-btn-div label input {
+  margin-right: 2px;
+}
+
 
 .radio-btn-nav .search-btn-div {
   text-align: center;
@@ -22,6 +28,7 @@
 
 .radio-btn-nav .search-btn-div button {
   cursor: pointer;
+  font-family: Acme , sans-serif;
   font-size: 16px;
   padding: 2px 12px;
 }

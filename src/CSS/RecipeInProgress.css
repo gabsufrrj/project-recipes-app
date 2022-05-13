@@ -38,18 +38,33 @@
 .recipe-in-progress-section .card-info {
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
   justify-content: space-between;
   padding: 4px;
+  width: 60%;
+}
+
+.recipe-in-progress-section .ingredients-div div {
+  font-family: ABeeZee , sans-serif;
+  margin: 4px 0;
+}
+
+.recipe-in-progress-section .card-info div:nth-child( 1 ) {
+  padding-top: 4px;
 }
 
 .recipe-in-progress-section .card-info h3 {
   align-self: flex-start;
   color: rgb(130, 130, 130);
+  font-family: Josefin Sans , sans-serif;
+  font-size: 18px;
+  font-weight: 600;
 }
 
 .recipe-in-progress-section .card-info h2 {
   align-self: center;
+  font-family: Fredoka One , cursive;
+  font-size: 20px;
+  font-weight: 100;
 }
 
 .recipe-in-progress-section .favorite-share-div {
@@ -85,12 +100,11 @@
 }
 
 .recipe-in-progress-section .ingredients-div h3 {
+  font-family: Fredoka One , cursive;
+  font-weight: 100;
   text-align: center;
 }
 
-.recipe-in-progress-section .ingredients-div div {
-  margin: 4px 0;
-}
 
 .recipe-in-progress-section .ingredients-div input {
   margin-right: 8px;
@@ -105,11 +119,14 @@
 }
 
 .recipe-in-progress-section .instructions-div h3 {
+  font-family: Fredoka One , cursive;
+  font-weight: 100;
   margin-bottom: 8px;
   text-align: center;
 }
 
 .recipe-in-progress-section .instructions-div p {
+  font-family: ABeeZee , sans-serif;
   text-align: justify;
 }
 
@@ -123,7 +140,8 @@
   border: none;
   border-radius: 2px;
   box-shadow: 0 0 4px black;
-  font-size: 18px;
+  font-family: Acme , sans-serif;
+  font-size: 22px;
   padding: 16px 0;
   width: 100%;
 }
