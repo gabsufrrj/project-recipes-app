@@ -1,0 +1,19 @@
+.explore-food-nationalities-section .select-div {
+  padding: 8px;
+}
+
+.explore-food-nationalities-section select {
+  background-color: white;
+  border: 1px solid rgb(206, 212, 218);
+  border-radius: 4px;
+  font-family: ABeeZee , sans-serif;
+  font-size: 16px;
+  outline: none;
+  padding: 8px;
+  transition: 0.1s ease-in-out;
+  width: 100%;
+}
+
+.explore-food-nationalities-section select:focus {
+  outline: 2px solid rgb(245, 35, 35);
+}

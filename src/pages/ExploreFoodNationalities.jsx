@@ -4,6 +4,7 @@ import Header from '../Components/Header';
 import Footer from '../Components/Footer';
 import Recipes from '../Components/Recipes';
 import recipesContext from '../Context/MyContext';
+import '../CSS/ExploreFoodNationalities.css';
 
 function ExploreFoodNationalities({ history }) {
   const { recipes, setRecipes } = useContext(recipesContext);
@@ -59,17 +60,21 @@ function ExploreFoodNationalities({ history }) {
   return (
     <div>
       <Header title="Explore Nationalities" renderInput />
-      <select onChange={ handleChange } data-testid="explore-by-nationality-dropdown">
-        <option data-testid="All-option">
-          All
-        </option>
-        {nationalitiesList.map((e, i) => (
-          <option key={ i } data-testid={ `${e.strArea}-option` }>
-            {e.strArea}
-          </option>
-        ))}
-      </select>
-      <Recipes history={ history } />
+      <section className="explore-food-nationalities-section">
+        <div className="select-div">
+          <select onChange={ handleChange } data-testid="explore-by-nationality-dropdown">
+            <option data-testid="All-option">
+              All
+            </option>
+            {nationalitiesList.map((e, i) => (
+              <option key={ i } data-testid={ `${e.strArea}-option` }>
+                {e.strArea}
+              </option>
+            ))}
+          </select>
+        </div>
+        <Recipes history={ history } />
+      </section>
       <Footer />
     </div>
   );

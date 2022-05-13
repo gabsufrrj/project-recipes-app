@@ -1,0 +1,25 @@
+.explore-foods-section {
+  display: flex;
+  flex-direction: column;
+  padding: 0 8px;
+}
+
+.explore-foods-section a {
+  margin: 12px 0;
+}
+
+.explore-foods-section a button {
+  background-color: white;
+  border: 1px solid rgb(245, 35, 35);
+  border-radius: 2px;
+  cursor: pointer;
+  font-family: Acme , sans-serif;
+  font-size: 18px;
+  height: 54px;
+  width: 100%;
+}
+
+.explore-foods-section a button:hover {
+  background-color: rgb(245, 35, 35);
+  color: white;
+}

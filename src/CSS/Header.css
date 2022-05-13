@@ -10,6 +10,7 @@ header div:nth-child( 1 ) {
 header div:nth-child( 1 ) h1 {
   font-family: Fredoka One , cursive;
   font-weight: 200;
+  text-align: center;
 }
 
 header div:nth-child( 2 ) {

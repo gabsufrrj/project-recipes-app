@@ -1,14 +1,15 @@
-.recipes-section {
+.explore-drink-by-ingredients-section {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   padding-bottom: 64px;
 }
 
-.recipes-section a {
+.explore-drink-by-ingredients-card {
   border-radius: 4px;
   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2) , 0 6px 10px rgba(0, 0, 0, 0.14) , 0
     1px 18px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
   margin: 8px;
   overflow: hidden;
   position: relative;
@@ -16,15 +17,13 @@
   width: 45%;
 }
 
-.recipes-section div {
-  align-items: center;
-  display: flex;
-  text-align: center;
+.explore-drink-by-ingredients-card img {
+  height: 100%;
   width: 100%;
 }
 
-.recipes-section div h2 {
-  background-color: rgb(0, 0, 0, 0.2);
+.explore-drink-by-ingredients-card h3 {
+  background-color: rgb(0, 0, 0, 0.3);
   bottom: 0;
   color: white;
   font-family: Akaya Telivigala , cursive;
@@ -35,9 +34,6 @@
   padding: 16px 0;
   position: absolute;
   right: 0;
-}
-
-.recipes-section div img {
-  height: 100%;
+  text-align: center;
   width: 100%;
 }
