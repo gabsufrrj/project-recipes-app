@@ -26,46 +26,52 @@ function RenderDoneRecipes({ filteredDoneRecipes }) {
     <section className="done-recipes-section">
       {filteredDoneRecipes.map((e, index) => (
         <div key={ `done-recipe-${index}` } className="done-recipe-card">
-          <Link to={ `/${e.type}s/${e.id}` }>
-            <h2 data-testid={ `${index}-horizontal-name` }>{e.name}</h2>
-          </Link>
-          <Link to={ `/${e.type}s/${e.id}` }>
-            <img
-              data-testid={ `${index}-horizontal-image` }
-              src={ e.image }
-              alt={ e.name }
-              className="done-recipe-image"
-            />
-          </Link>
-          <h3 data-testid={ `${index}-horizontal-top-text` }>
-            {(e.type === 'food') ? (
-              `${e.nationality} - ${e.category}`) : `${e.alcoholicOrNot}`}
-          </h3>
-          <h4>
-            <span>Done in: </span>
-            <span data-testid={ `${index}-horizontal-done-date` }>{e.doneDate}</span>
-          </h4>
-          <div className="tags-div">
-            {e.tags.map((tag) => (
-              <span
-                data-testid={ `${index}-${tag}-horizontal-tag` }
-                key={ tag }
-              >
-                {tag}
-              </span>))}
+          <div className="done-recipe-title-div">
+            <Link to={ `/${e.type}s/${e.id}` }>
+              <h2 data-testid={ `${index}-horizontal-name` }>{e.name}</h2>
+            </Link>
+            <Link to={ `/${e.type}s/${e.id}` }>
+              <img
+                data-testid={ `${index}-horizontal-image` }
+                src={ e.image }
+                alt={ e.name }
+                className="done-recipe-image"
+              />
+            </Link>
           </div>
-          <div className="share-div">
-            <img
-              data-testid={ `${index}-horizontal-share-btn` }
-              src={ shareImage }
-              alt="Share"
-              onClick={ ({ target }) => share(target, e) }
-              aria-hidden="true"
-            />
-            <span className="link-copied">Link copied!</span>
+          <div className="done-recipe-info">
+            <h3 data-testid={ `${index}-horizontal-top-text` }>
+              {(e.type === 'food') ? (
+                `${e.nationality} - ${e.category}`) : `${e.alcoholicOrNot}`}
+            </h3>
+            <h4>
+              <span>Done in: </span>
+              <span data-testid={ `${index}-horizontal-done-date` }>{e.doneDate}</span>
+            </h4>
+            <div className="tags-div">
+              {e.tags.map((tag) => (
+                <span
+                  data-testid={ `${index}-${tag}-horizontal-tag` }
+                  key={ tag }
+                >
+                  {tag}
+                </span>))}
+            </div>
+            <div className="share-div">
+              <img
+                data-testid={ `${index}-horizontal-share-btn` }
+                src={ shareImage }
+                alt="Share"
+                onClick={ ({ target }) => share(target, e) }
+                aria-hidden="true"
+              />
+              <span className="link-copied">Link copied!</span>
+            </div>
           </div>
         </div>
       ))}
+      {(!filteredDoneRecipes.length) && (
+        <h2 className="done-recipes-not-found">Done Recipes not found!</h2>)}
     </section>
   );
 }

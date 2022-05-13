@@ -44,21 +44,24 @@ function Login() {
       <div className="form-div">
         <form>
           <h1>Login</h1>
-          <input
-            type="email"
-            placeholder="Email"
-            onChange={ onInputChange }
-            value={ emailInput }
-            id="email"
-            data-testid="email-input"
-          />
-          <input
-            type="password"
-            placeholder="Senha"
-            onChange={ onInputChange }
-            value={ passInput }
-            data-testid="password-input"
-          />
+          <div>
+
+            <input
+              type="email"
+              placeholder="Email"
+              onChange={ onInputChange }
+              value={ emailInput }
+              id="email"
+              data-testid="email-input"
+            />
+            <input
+              type="password"
+              placeholder="Senha"
+              onChange={ onInputChange }
+              value={ passInput }
+              data-testid="password-input"
+            />
+          </div>
           <Link to="/foods">
             <input
               type="submit"

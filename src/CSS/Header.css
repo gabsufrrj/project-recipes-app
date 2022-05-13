@@ -1,8 +1,33 @@
-header {
+header div:nth-child( 1 ) {
   align-items: center;
   background-color: rgb(245, 35, 35);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   padding: 10px;
+}
+
+header div:nth-child( 1 ) h1 {
+  font-family: Fredoka One , cursive;
+  font-weight: 200;
+}
+
+header div:nth-child( 2 ) {
+  padding: 0 8px;
+}
+
+header div:nth-child( 2 ) input {
+  border: 1px solid rgb(206, 212, 218);
+  border-radius: 4px;
+  font-family: ABeeZee , sans-serif;
+  font-size: 16px;
+  margin: 8px 0 4px;
+  outline: none;
+  padding: 4px 8px;
+  transition: 0.1s ease-in-out;
+  width: 100%;
+}
+
+header div:nth-child( 2 ) input:focus {
+  outline: 2px solid rgb(30, 36, 36, 0.3);
 }

@@ -24,8 +24,13 @@ function DoneRecipes() {
   return (
     <div>
       <Header title="Done Recipes" renderInput={ false } />
-      <DoneAndFavoriteRecipesFilterButtons filter={ filter } setFilter={ setFilter } />
-      <RenderDoneRecipes filteredDoneRecipes={ filteredDoneRecipes } />
+      <section className="done-recipes-content">
+        <div className="done-recipes-background">
+          <span style={ { display: 'none' } }>BACKGROUND</span>
+        </div>
+        <DoneAndFavoriteRecipesFilterButtons filter={ filter } setFilter={ setFilter } />
+        <RenderDoneRecipes filteredDoneRecipes={ filteredDoneRecipes } />
+      </section>
     </div>
   );
 }

@@ -16,33 +16,38 @@ function Header({ title, renderInput }) {
 
   return (
     <header>
-      <Link to="/profile">
-        <input
-          type="image"
-          data-testid="profile-top-btn"
-          src={ profileIcon }
-          alt="profile"
-        />
-      </Link>
+      <div>
 
-      <h1 data-testid="page-title">{ title }</h1>
+        <Link to="/profile">
+          <input
+            type="image"
+            data-testid="profile-top-btn"
+            src={ profileIcon }
+            alt="profile"
+          />
+        </Link>
 
-      {renderInput && (
-        <input
-          type="image"
-          onClick={ () => setShowInput(!showInput) }
-          data-testid="search-top-btn"
-          src={ searchIcon }
-          alt="search"
-        />
-      )}
-      {showInput
-        && <input
-          onChange={ handleChange }
-          placeholder="Search"
-          data-testid="search-input"
-          value={ searchBarValue }
-        />}
+        <h1 data-testid="page-title">{ title }</h1>
+
+        {renderInput && (
+          <input
+            type="image"
+            onClick={ () => setShowInput(!showInput) }
+            data-testid="search-top-btn"
+            src={ searchIcon }
+            alt="search"
+          />
+        )}
+      </div>
+      <div>
+        {showInput
+          && <input
+            onChange={ handleChange }
+            placeholder="Search"
+            data-testid="search-input"
+            value={ searchBarValue }
+          />}
+      </div>
     </header>
   );
 }
