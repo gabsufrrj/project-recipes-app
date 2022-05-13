@@ -28,14 +28,21 @@ function FoodDetails({ foodDetails: { strMealThumb, strMeal, strCategory,
     setMeasure(myMeasure);
   }, []);
   return (
-    <div>
-      <img data-testid="recipe-photo" alt="food" src={ strMealThumb } />
-      <h2 data-testid="recipe-title">
-        {' '}
-        { strMeal }
-      </h2>
-      <FavoriteAndShareBtn type="food" />
-      <p data-testid="recipe-category">{ strCategory }</p>
+    <div className="container">
+      <img
+        data-testid="recipe-photo"
+        alt="food"
+        src={ strMealThumb }
+        className="main-image"
+      />
+      <section className="title-section">
+        <h2 data-testid="recipe-title">
+          {' '}
+          { strMeal }
+          <span data-testid="recipe-category" className="category">{ strCategory }</span>
+        </h2>
+        <FavoriteAndShareBtn type="food" />
+      </section>
       <h3>Ingredients</h3>
       <ul>
         {ingredients.map((ingredient, i) => (
@@ -47,26 +54,32 @@ function FoodDetails({ foodDetails: { strMealThumb, strMeal, strCategory,
           </li>
         ))}
       </ul>
-      <h3>Instructions</h3>
-      <p data-testid="instructions">{ strInstructions }</p>
-      <h3>Vídeo</h3>
-      <video data-testid="video">
-        <source src={ strYoutube } />
-        <track kind="captions" srcLang="pt" />
-      </video>
-      <h3>Recommended</h3>
-      <div className="recommendation">
-        {recommendation.map((element, i) => (
-          <div key={ i } data-testid={ `${i}-recomendation-card` }>
-            <img
-              src={ element.strDrinkThumb }
-              alt={ element.strDrink }
-              className="r-image"
-            />
-            <span data-testid={ `${i}-recomendation-title` }>{element.strDrink}</span>
-          </div>
-        ))}
-      </div>
+      <section className="instructions">
+        <h3>Instructions</h3>
+        <p data-testid="instructions">{ strInstructions }</p>
+      </section>
+      <section className="video">
+        <h3>Vídeo</h3>
+        <video>
+          <source src={ strYoutube } />
+          <track kind="captions" srcLang="pt" />
+        </video>
+      </section>
+      <section className="recommended">
+        <h3>Recommended</h3>
+        <div className="recommendation">
+          {recommendation.map((element, i) => (
+            <div key={ i } data-testid={ `${i}-recomendation-card` }>
+              <img
+                src={ element.strDrinkThumb }
+                alt={ element.strDrink }
+                className="r-image"
+              />
+              <span data-testid={ `${i}-recomendation-title` }>{element.strDrink}</span>
+            </div>
+          ))}
+        </div>
+      </section>
       <StartRecipe type="foods" />
     </div>
     /* </div> */

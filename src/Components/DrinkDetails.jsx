@@ -29,14 +29,26 @@ function DrinkDetails({ drinkDetails: { strDrinkThumb, strDrink, strAlcoholic,
     setMeasure(myMeasure);
   }, []);
   return (
-    <div>
-      <img data-testid="recipe-photo" alt="food" src={ strDrinkThumb } />
-      <h2 data-testid="recipe-title">
-        {' '}
-        { strDrink }
-      </h2>
-      <FavoriteAndShareBtn type="drink" />
-      <p data-testid="recipe-category">{ strAlcoholic }</p>
+    <div className="container">
+      <section className="title-section">
+        <img
+          data-testid="recipe-photo"
+          alt="food"
+          src={ strDrinkThumb }
+          className="main-image"
+        />
+        <div className="title-div">
+        <div className="title">
+        <h2 data-testid="recipe-title">
+          {' '}
+          { strDrink }
+        </h2>
+        <span data-testid="recipe-category">{ strAlcoholic }</span>
+        </div>
+        <FavoriteAndShareBtn type="drink" />
+      </div>
+      </section>
+      <section className="ingredients">
       <h3>Ingredients</h3>
       <ul>
         {ingredients.map((ingredient, i) => (
@@ -48,21 +60,26 @@ function DrinkDetails({ drinkDetails: { strDrinkThumb, strDrink, strAlcoholic,
           </li>
         ))}
       </ul>
+      </section>
+      <section className="instructions">
       <h3>Instructions</h3>
       <p data-testid="instructions">{ strInstructions }</p>
+      </section>
+      <section className="recommendation">
       <h3>Recommended</h3>
-      <div className="recommendation">
+      <div className="recommendation-images">
         {recommendation.map((element, i) => (
-          <div key={ i } data-testid={ `${i}-recomendation-card` }>
+          <div key={ i } data-testid={ `${i}-recomendation-card` } className="r-images">
+            <span data-testid={ `${i}-recomendation-title` }>{element.strMeal}</span>
             <img
               src={ element.strMealThumb }
               alt={ element.strMeal }
               className="r-image"
             />
-            <span data-testid={ `${i}-recomendation-title` }>{element.strMeal}</span>
           </div>
         ))}
       </div>
+      </section>
       <StartRecipe type="drinks" />
     </div>
   );
