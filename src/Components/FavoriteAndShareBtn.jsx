@@ -68,7 +68,7 @@ function FavoriteAndShareBtn({ type }) {
   };
 
   return (
-    <div>
+    <div className="icons">
       <input
         data-testid="share-btn"
         type="image"

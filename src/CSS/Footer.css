@@ -1,4 +1,14 @@
 .footer {
+  display: flex;
   bottom: 0;
   position: fixed;
+  width: 100%;
+  justify-content: space-around;
+  background-color: rgb(245, 35, 35);
+}
+
+.footer input {
+  filter: invert(98%) sepia(26%) saturate(61%) hue-rotate(234deg) brightness(105%) contrast(101%);
+  width: 36px;
+  padding: 4px 0;
 }

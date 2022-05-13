@@ -1,10 +1,108 @@
-.recommendation {
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background-image: url('../images/foods-background.png');
+  background-position: center;
+  background-size: cover;
+  font-family: ABeeZee , sans-serif;
+}
+/* .ingredients {
+  margin-left: 8px;
+  background-color: #f3d7db;
+  border-radius: 4px;
+  box-shadow: 0 0 4px black;
+  padding: 0px;
+} */
+
+.container section {
+  background-color: rgb(255, 255, 255, 0.9);
+  border-radius: 4px;
+  box-shadow: 0 0 4px black;
+  display: flex;
+  flex-direction: column;
+  margin: 8px;
+}
+
+
+
+.title-section {
+  background-color: rgb(255, 255, 255, 0.9);
+  border-radius: 4px;
+  box-shadow: 0 0 4px black;
+  display: flex;
+  flex-direction: column;
+  margin: 8px;
+}
+
+.title-div {
+  margin-top: 0px;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  text-align: center;
+}
+
+.recommendation-images {
   display: flex;
   overflow-x: auto;
   text-align: center;
 }
 
 .r-image {
-  height: 50vw;
-  width: 50vw;
+  height: 46.5vw;
+  width: 46.5vw;
+  margin: 2px;
+  border:1px solid black;
+  border-radius: 2px;
 }
+
+.r-images {
+  position: relative;
+}
+
+.r-images span {
+  position: absolute;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.527);
+
+}
+
+.main-image {
+  border-style: double;
+  align-self: center;
+  height: 80vw;
+  width: 85vw;
+  border-radius: 4px;
+  margin-top: 12px;
+  margin-bottom: 5px;
+}
+
+.icons {
+  display: flex;
+  height: 30px;
+  width: 30px;
+  gap: 8px;
+  margin-left: 50px;
+  
+}
+
+h3 {
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+/* section {
+  margin: 8px;
+  display: flex;
+  flex-direction: column;
+  background-color: #f3d7db;
+  border-radius: 4px;
+  box-shadow: 0 0 4px black;
+  padding: 5px;
+}  */
+
+ul {
+  padding-left: 22px;
+  width: 100%;
+} 
