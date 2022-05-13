@@ -1,0 +1,38 @@
+.profile-section {
+  display: flex;
+  flex-direction: column;
+  padding: 30px 8px;
+}
+
+.profile-section h2 {
+  font-family: Fredoka One , cursive;
+  font-weight: 200;
+  margin-bottom: 18px;
+  overflow: hidden;
+  text-align: center;
+  text-overflow: ellipsis;
+}
+
+.profile-section div {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-section div a {
+  margin: 12px 0;
+}
+
+.profile-section div button {
+  background-color: white;
+  border: 1px solid rgb(245, 35, 35);
+  border-radius: 2px;
+  cursor: pointer;
+  font-family: Acme , sans-serif;
+  font-size: 18px;
+  height: 54px;
+  width: 100%;
+}
+
+.profile-section div .logout {
+  margin: 12px 0;
+}
