@@ -29,6 +29,7 @@ function DetailsDrinkRecipes({ match }) {
       setLoading(false);
     };
     fetchItens();
+    localStorage.clear();
   }, []);
 
   return (

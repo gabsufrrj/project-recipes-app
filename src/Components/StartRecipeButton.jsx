@@ -40,7 +40,7 @@ function StartRecipe({ type }) {
     history.push(`/${type}/${id}/in-progress`);
   };
   return (
-    <div>
+    <div className="start-recipe-div">
       {renderButton && (
         <button
           type="button"

@@ -29,6 +29,7 @@ function DetailsFoodRecipes({ match }) {
       setLoading(false);
     };
     fetchItens();
+    localStorage.clear();
   }, []);
 
   return (

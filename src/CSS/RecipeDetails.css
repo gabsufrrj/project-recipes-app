@@ -2,23 +2,37 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
+  background-image: url('../images/foods-background.png');
+  background-position: center;
+  background-size: cover;
+  font-family: ABeeZee , sans-serif;
 }
-.ingredients {
+/* .ingredients {
   margin-left: 8px;
   background-color: #f3d7db;
   border-radius: 4px;
   box-shadow: 0 0 4px black;
   padding: 0px;
-}
+} */
 
-.title-section {
-  margin: 2px;
-  display: flex;
-  flex-direction: column;
-  background-color: #f3d7db;
+.container section {
+  background-color: rgb(255, 255, 255, 0.9);
   border-radius: 4px;
   box-shadow: 0 0 4px black;
-  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  margin: 8px;
+}
+
+
+
+.title-section {
+  background-color: rgb(255, 255, 255, 0.9);
+  border-radius: 4px;
+  box-shadow: 0 0 4px black;
+  display: flex;
+  flex-direction: column;
+  margin: 8px;
 }
 
 .title-div {
@@ -36,8 +50,8 @@
 }
 
 .r-image {
-  height: 45.5vw;
-  width: 45.5vw;
+  height: 46.5vw;
+  width: 46.5vw;
   margin: 2px;
   border:1px solid black;
   border-radius: 2px;
@@ -78,7 +92,7 @@ h3 {
   margin-bottom: 5px;
 }
 
-section {
+/* section {
   margin: 8px;
   display: flex;
   flex-direction: column;
@@ -86,9 +100,9 @@ section {
   border-radius: 4px;
   box-shadow: 0 0 4px black;
   padding: 5px;
-}
+}  */
 
 ul {
   padding-left: 22px;
   width: 100%;
-}
+} 
