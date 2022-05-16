@@ -83,11 +83,10 @@
   height: 30px;
   width: 30px;
   gap: 8px;
-  margin-left: 50px;
-  
+  margin-left: 50px; 
 }
 
-h3 {
+.container h3 {
   text-align: center;
   margin-bottom: 5px;
 }

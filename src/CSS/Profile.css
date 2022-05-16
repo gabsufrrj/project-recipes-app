@@ -5,12 +5,16 @@
 }
 
 .profile-section h2 {
+  border-radius: 28px;
+  box-shadow: 0 0 2px black;
   font-family: Fredoka One , cursive;
   font-weight: 200;
   margin-bottom: 18px;
   overflow: hidden;
+  padding: 8px;
   text-align: center;
   text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .profile-section div {
