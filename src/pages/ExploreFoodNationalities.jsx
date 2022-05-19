@@ -7,8 +7,8 @@ import recipesContext from '../Context/MyContext';
 import '../CSS/ExploreFoodNationalities.css';
 
 function ExploreFoodNationalities({ history }) {
-  const { recipes, setRecipes } = useContext(recipesContext);
-  const [selectedNationality, setSelectedNationality] = useState('Italian');
+  const { setRecipes } = useContext(recipesContext);
+  const [selectedNationality, setSelectedNationality] = useState();
   const [nationalitiesList, setNationalitiesList] = useState([]);
 
   const fetchFoodNationalitiesFromApi = async () => {
@@ -41,21 +41,23 @@ function ExploreFoodNationalities({ history }) {
     } else {
       setSelectedNationality(target.value);
     }
-    // fetchFilteredFoodsByNationalities();
   };
 
   useEffect(() => {
-    fetchFilteredFoodsByNationalities();
+    if (!selectedNationality) {
+      fetchFoodNationalitiesFromApi();
+    } else {
+      fetchFilteredFoodsByNationalities();
+    }
   }, [selectedNationality]);
 
   useEffect(() => {
     fetchFoodNationalitiesFromApi();
     fetchAllFoodsByNationalities();
-    // fetchFilteredFoodsByNationalities();
   }, []);
 
   // console.log(selectedNationality);
-  console.log(recipes);
+  // console.log(recipes);
 
   return (
     <div>
